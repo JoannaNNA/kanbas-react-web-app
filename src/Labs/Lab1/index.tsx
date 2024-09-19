@@ -22,44 +22,27 @@ export default function Lab1() {
       </div>
 
       <div id="wd-lists"> ... </div>
-      <div id="wd-tables">
-        <h4>Table Tag</h4>
-        <table border={1} width="100%">
-          <thead>
-            <tr>
-              <th>Quiz</th>
-              <th>Topic</th>
-              <th>Date</th>
-              <th>Grade</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Q1</td>
-              <td>HTML</td>
-              <td>2/3/21</td>
-              <td>85</td>
-            </tr>
-            <tr>
-              <td>Q2</td>
-              <td>CSS</td>
-              <td>2/10/21</td>
-              <td>90</td>
-            </tr>
-            <tr>
-              <td>Q3</td>
-              <td>JavaScript</td>
-              <td>2/17/21</td>
-              <td>95</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={3}>Average</td>
-              <td>90</td>
-            </tr>
-          </tfoot>
-        </table>
+      <div id="wd-forms">
+        <h4>Form Elements</h4>
+        <form id="wd-text-fields">
+        <h5>Text boxes</h5>
+        <label>Biography:</label><br/>
+        <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+          
+          <label htmlFor="wd-text-fields-username">Username:</label>
+          <input id="wd-text-fields-username" placeholder="jdoe" /> <br />
+          <label htmlFor="wd-text-fields-password">Password:</label>
+          <input type="password" id="wd-text-fields-password" value="123@#$asd" />
+          <br />
+          <label htmlFor="wd-text-fields-first-name">First name:</label>
+          <input type="text" id="wd-text-fields-first-name" title="John" /> <br />
+          <label htmlFor="wd-text-fields-last-name">Last name:</label>
+          <input type="text" id="wd-text-fields-last-name" placeholder="Doe"
+            value="Wonderland" title="The last name" />
+          {/* copy rest of form elements here  */}
+        </form>
       </div>
+
+      
     </div>
 );}
