@@ -1,5 +1,5 @@
 import React from 'react';
-import Lab1 from './Lab1';
+import Lab1 from './Lab1/index';
 
 export default function Labs() {
   return (
