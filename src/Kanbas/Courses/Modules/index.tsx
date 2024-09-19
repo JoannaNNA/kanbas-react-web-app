@@ -4,6 +4,7 @@ export default function Modules() {
         <button id="wd-collapse-all">Collapse All</button>
         <button id="wd-view-progress">View Progress</button>
         <select id="wd-select-one-genre">
+        <option value="publish">Publish</option>
         <option value="publish-one">Publish All</option>
         </select>
         <button id="wd-add-module">+ Module</button>
