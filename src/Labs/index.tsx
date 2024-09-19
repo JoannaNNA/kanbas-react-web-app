@@ -8,6 +8,7 @@ export default function Labs() {
   return (
     <div>
       <h1>A1</h1>
+      <h2>Labs</h2>
       <p>Developed by: Na Zhou</p> 
       
       <TOC />
