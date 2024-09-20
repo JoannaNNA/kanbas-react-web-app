@@ -3,9 +3,11 @@ import AccountNavigation from "./Navigation";
 import Signin from "./Signin";
 import Profile from "./Profile";
 import Signup from "./signup";
+
 export default function Account() {
     return (
       <div id="wd-account-screen">
+        
        <table>
         <tr>
           <td valign="top">
