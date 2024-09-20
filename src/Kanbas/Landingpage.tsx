@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 const LandingPage: React.FC = () => {
   return (
     <div id="landing-page">
-      <h1>Labs</h1>
-      <p>Developed by: Na Zhou - Section 2</p>
+      <h1>Welcome to the Landing Page</h1>
+      <p>Developed by Na Zhou - Section 2</p>
+      <ul>
+        <li><Link to="/Labs">Go to Labs</Link></li>
+        <li><Link to="/Kanbas">Sign in Kanbas</Link></li>
+      </ul>
 
       {/* Links to Lab Assignments */}
       <h2>Links to Lab Assignments</h2>
@@ -17,7 +21,7 @@ const LandingPage: React.FC = () => {
       {/* Link to Kanbas Application */}
       <h2>Kanbas Application</h2>
       <p>
-        <Link to="/Kanbas/Dashboard">Go to the Kanbas Application</Link>
+        <Link to="/Kanbas/Dashboard">Go to the Kanbas Dashboard</Link>
       </p>
 
       {/* GitHub Repositories */}

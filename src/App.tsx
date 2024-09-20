@@ -13,7 +13,10 @@ export default function App() {
   <HashRouter>
    <div>
     <Routes>
-      <Route path="/Landingpage/*" element={<Landingpage/>} />
+      {/* Redirect root to the landing page */}
+     <Route path="/" element={<Navigate to="/Landingpage" />} />
+     {/* Routes */}
+     <Route path="/Landingpage/*" element={<Landingpage />} />
      <Route path="/Labs/*" element={<Labs />} />
      <Route path="/Kanbas/*" element={<Kanbas />} />
     </Routes>
