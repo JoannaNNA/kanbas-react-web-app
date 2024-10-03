@@ -1,5 +1,5 @@
 
-export default function Lab1() {
+export default function Padding() {
     return (
         <div id="wd-css-paddings">
         <h2>Padding</h2>

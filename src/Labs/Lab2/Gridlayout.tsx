@@ -1,6 +1,6 @@
 
 // 3.1.18
-export default function Lab1() {
+export default function Gridlayout() {
     return (
         <div id="wd-css-grid-layout">
             <div id="wd-css-left-right-layout">

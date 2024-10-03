@@ -1,10 +1,10 @@
-import { HashRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate, Link } from "react-router-dom";
 import "./index.css";
 import React from 'react';
 import BackgroundColors from './BackgroundColors';
 import BootstrapGrids from "./BootstrapGrids";
 import Borders from './Borders';
-import Corners from "./Corners";
+import Corners from './Corners';
 import Dimensions from "./Dimensions";
 import Flex from "./Flex";
 import Float from "./Float";
@@ -15,28 +15,67 @@ import Padding from './Padding';
 import Positions from './Positions';
 import ReactIcons from './ReactIcons';
 import Zindex from './Zindex';
+import ScreenSizeLabel from './ScreenSizeLable';
+import BootstrapForms from "./BootstrapForms";
+import BootstrapLists from "./BootstrapLists";
+import BootstrapTables from "./BootstrapTables";
+import BootstrapNavigation from "./BootstrapNavigation";
+
 
 export default function Lab2() {
   return (
     <div className="container">
-      <Routes>
-        <Route path="/" element={<Navigate to="/BackgroundColors" />} />
-        <Route path="/BackgroundColors" element={<BackgroundColors />} />
-        <Route path="/BootstrapGrids" element={<BootstrapGrids />} />
-        <Route path="/Borders" element={<Borders />} />
-        <Route path="/Corners" element={<Corners />} />
-        <Route path="/Dimensions" element={<Dimensions />} />
-        <Route path="/Flex" element={<Flex />} />
-        <Route path="/Float" element={<Float />} />
-        <Route path="/ForegroundColor" element={<ForegroundColor />} />
-        <Route path="/Gridlayout" element={<Gridlayout />} />
-        <Route path="/Margins" element={<Margins />} />
-        <Route path="/Padding" element={<Padding />} />
-        <Route path="/Positions" element={<Positions />} />
-        <Route path="/ReactIcons" element={<ReactIcons />} />
-        <Route path="/Zindex" element={<Zindex />} />
-      </Routes>
       
+        <ul>
+        <li><Link to="foregroundcolor">Foreground Color</Link></li>
+        <li><Link to="backgroundcolors">Background Colors</Link></li>
+        <li><Link to="borders">Borders</Link></li>
+        <li><Link to="padding">Padding</Link></li>
+        <li><Link to="margins">Margins</Link></li>
+        <li><Link to="corners">Corners</Link></li>
+        <li><Link to="dimensions">Dimensions</Link></li>
+        <li><Link to="positions">Positions</Link></li>
+        <li><Link to="zindex">Z Index</Link></li>
+        <li><Link to="float">Float</Link></li>
+        <li><Link to="gridlayout">Grid Layout</Link></li>
+        <li><Link to="flex">Flex</Link></li>
+
+        <li><Link to="reacticons">React Icons</Link></li>
+        <li><Link to="bootstrapgrids">Bootstrap Grids</Link></li>
+        <li><Link to="ScreenSizeLabel">Screen Size Label</Link></li>
+        <li><Link to="BootstrapTables"> Bootstrap Tables</Link></li>
+        <li><Link to="BootstrapLists"> Bootstrap Lists</Link></li>
+        <li><Link to="BootstrapForms"> Bootstrap Forms</Link></li>
+        <li><Link to="BootstrapNavigation"> Bootstrap Navigation</Link></li>
+        
+        
+        
+      </ul>
+      <Routes>
+        {/* Use relative paths since the base path will be /Labs/Lab2 */}
+        <Route path="/" element={<Navigate to="backgroundcolors" />} />
+        <Route path="backgroundcolors" element={<BackgroundColors />} />
+        <Route path="bootstrapgrids" element={<BootstrapGrids />} />
+        <Route path="borders" element={<Borders />} />
+        <Route path="corners" element={<Corners />} />
+        <Route path="dimensions" element={<Dimensions />} />
+        <Route path="flex" element={<Flex />} />
+        <Route path="float" element={<Float />} />
+        <Route path="foregroundcolor" element={<ForegroundColor />} />
+        <Route path="gridlayout" element={<Gridlayout />} />
+        <Route path="margins" element={<Margins />} />
+        <Route path="padding" element={<Padding />} />
+        <Route path="positions" element={<Positions />} />
+        <Route path="reacticons" element={<ReactIcons />} />
+        <Route path="zindex" element={<Zindex />} />
+
+        <Route path="screensizelabel" element={<ScreenSizeLabel />} />
+        <Route path="bootstraptables" element={<BootstrapTables />} />
+        <Route path="bootstraplists" element={<BootstrapLists />} />
+        <Route path="bootstrapforms" element={<BootstrapForms />} />
+        <Route path="bootstrapnavigation" element={<BootstrapNavigation/>} />
+      </Routes>
+
       <h2>Lab 2 - Cascading Style Sheets</h2>
       <h3>Styling with the STYLE attribute</h3>
       <p>
@@ -72,10 +111,13 @@ export default function Lab2() {
             <p className="wd-selector-3">
               This paragraph's red background is referenced as <br />
               `.selector-2 .selector3` <br />
-              meaning the descendant of some ancestor. <br />
+              meaning the descendant of some ancestor.
+            </p>
+            <p>
               <span className="wd-selector-4">
                 Whereas this span is a direct child of its parent.
-              </span> <br />
+              </span>
+              <br />
               You can combine these relationships to create specific styles depending on the document structure.
             </p>
           </div>

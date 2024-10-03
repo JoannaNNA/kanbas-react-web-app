@@ -1,5 +1,5 @@
 
-export default function Lab1() {
+export default function ForegroundColor() {
     return (
         /* 3.1.7 */
         <div id="wd-css-colors">

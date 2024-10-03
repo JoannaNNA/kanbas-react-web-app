@@ -6,6 +6,9 @@ import Lab1 from "./Labs/Lab1";
 import TOC from "./Labs/TOC";
 import Lab2 from "./Labs/Lab2";
 import Lab3 from "./Labs/Lab3";
+import Calendar from './Kanbas/Calender';
+import Inbox from "./Kanbas/Inbox";
+
 
 
 export default function App() {
@@ -19,6 +22,7 @@ export default function App() {
      <Route path="/Landingpage/*" element={<Landingpage />} />
      <Route path="/Labs/*" element={<Labs />} />
      <Route path="/Kanbas/*" element={<Kanbas />} />
+    
     </Routes>
    </div>
   </HashRouter>

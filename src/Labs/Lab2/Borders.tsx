@@ -1,6 +1,6 @@
 /* 3.1.9 */
 
-export default function Lab1() {
+export default function borders() {
     return (
         <div id="wd-css-borders">
         <h2>Borders</h2>

@@ -1,6 +1,6 @@
 
 
-export default function Lab1() {
+export default function BootstrapGrids() {
     return (
         <div id="wd-bs-grib">
         <h2>Bootstrap</h2>

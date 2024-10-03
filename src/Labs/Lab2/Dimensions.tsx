@@ -1,5 +1,5 @@
 
-export default function Lab1() {
+export default function Dimensions() {
     return (
         <div id="wd-css-dimensions">
             <h2>Dimension</h2>

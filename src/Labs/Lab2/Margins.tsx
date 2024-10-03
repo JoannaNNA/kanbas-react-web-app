@@ -1,5 +1,5 @@
 
-export default function Lab1() {
+export default function Margins() {
     return (
         /* 3.1.10 */   
         <div id="wd-css-margins">

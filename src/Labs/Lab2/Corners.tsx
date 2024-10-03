@@ -1,5 +1,5 @@
 
-export default function Lab1() {
+export default function Corners() {
     return (
         <div id="wd-css-borders">
         <h3>Rounded corners</h3>
