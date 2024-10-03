@@ -38,7 +38,7 @@ body * {
   --bs-btn-color: #000 !important;
   --bs-btn-bg: #c7cdd1 !important;
   --bs-btn-border-color: #c7cdd1 !important;
-  --bs-btn-hover-color: #fff !important; /* Color when hovering over the button */
+  --bs-btn-hover-color: #ba6767 !important; /* Color when hovering over the button */
 }
 
 /* Background for Secondary Elements */
