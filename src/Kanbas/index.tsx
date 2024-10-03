@@ -11,11 +11,9 @@ export default function Kanbas() {
   return (
     <>
       <div id="wd-kanbas">
-        <h1>Kanbas</h1>
+        <h3>Kanbas</h3>
         {/* Add a link to navigate back to the Landing Page */}
-        <p>
-          <Link to="/Landingpage">Back to Landing Page</Link> {/* Link added here */}
-        </p>
+
       </div>
       <div>
       {/* <table width="100%"> */}

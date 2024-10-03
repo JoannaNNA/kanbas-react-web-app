@@ -1,9 +1,26 @@
 import { Link } from "react-router-dom";
+
 export default function AccountNavigation() {
   return (
-    <div id="wd-account-navigation">
-      <Link to={`/Kanbas/Account/Signin`}  > Signin  </Link> <br/>
-      <Link to={`/Kanbas/Account/Signup`}  > Signup  </Link> <br/>
-      <Link to={`/Kanbas/Account/Profile`} > Profile </Link> <br/>
+    <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{width: "280px"}}>
+      <ul className="nav nav-pills flex-column mb-auto">
+        <li className="nav-item">
+          <Link to="/Kanbas/Account/Profile" className="nav-link active" aria-current="page">
+            Profile
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/Kanbas/Account/Signin" className="nav-link">
+            Signin
+          </Link>
+        </li>
+        <li>
+          <Link to="/Kanbas/Signup" className="nav-link">
+            Signup
+          </Link>
+        </li>
+      </ul>
     </div>
-);}
+  );
+}
