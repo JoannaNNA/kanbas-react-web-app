@@ -70,3 +70,21 @@ body * {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   background-color: #fff;
 }
+
+/* Assignments.css */
+.container {
+  max-width: 800px; /* Adjust based on preference */
+}
+
+.input-group-text {
+  background-color: #e9ecef; /* Bootstrap default for input group prepend */
+}
+
+.btn-success, .btn-primary {
+  float: right; /* Ensures buttons are floated to the right */
+  margin-left: 10px; /* Space between buttons */
+}
+
+.list-group-item {
+  border-left: 3px solid green; /* Styling for list items */
+}
