@@ -103,7 +103,6 @@ body * {
 
 .list-group-item {
   border-left: 3px solid green; /* Styling for list items */
-<<<<<<< HEAD
 }
 
 .wd-rounded-corners-all-around {
@@ -129,6 +128,4 @@ body * {
   padding-left: 2.5em; /* Make space for the icon */
   width: 100%;
 }
-=======
-}
->>>>>>> 12237f2cf6679e7c68398eccde0343d72da5bb2a
+

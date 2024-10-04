@@ -4,10 +4,10 @@ export default function Signin() {
   return (
     <div id="wd-signin-screen" className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6">
-          <h1 className="mb-3">Sign in</h1>
+        <div className="col-md-6" style={{ width: '300px' }}>
+          <h1 className="mb-3" style={{ whiteSpace: 'nowrap' }}>Sign in</h1>
           
-            <div className="mb-3">
+            <div className="mb-3" >
               <input id="wd-username"
                      placeholder="Username"
                      className="form-control"
