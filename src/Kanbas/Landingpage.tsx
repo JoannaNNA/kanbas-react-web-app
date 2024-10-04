@@ -37,12 +37,22 @@ const LandingPage: React.FC = () => {
         </li>
         <li>
           <a 
-            href="https://github.com/JoannaNNA/kanbas-react-web-app.git"
+            href="https://github.com/JoannaNNA/kanbas-react-web-app/tree/A1"
             id="wd-a1"    
            >
              Assignments 1 Source Code
           </a>
         </li>
+
+        <li>
+          <a 
+            href="https://github.com/JoannaNNA/kanbas-react-web-app/tree/A2"
+            id="wd-a2"    
+           >
+             Assignments 2 Source Code
+          </a>
+        </li>
+
       </ul>
     </div>
   );

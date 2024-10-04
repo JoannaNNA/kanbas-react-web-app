@@ -6,7 +6,7 @@ export default function Signin() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h1 className="mb-3">Sign in</h1>
-          <form>
+          
             <div className="mb-3">
               <input id="wd-username"
                      placeholder="Username"
@@ -19,9 +19,9 @@ export default function Signin() {
                      className="form-control"
                      type="password" />
             </div>
-            <button type="submit" className="btn btn-primary w-100 mb-2">Sign in</button>
-          </form>
-          <Link id="wd-signup-link" to="/Kanbas/Account/Signup" className="btn btn-link w-100">
+            <Link id="wd-signin-btn" to="/Kanbas/Account/Profile"className="btn btn-primary w-100">
+            Sign in </Link>
+            <Link id="wd-signup-link" to="/Kanbas/Account/Signup" className="btn btn-link w-100">
             Sign up
           </Link>
         </div>

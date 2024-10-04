@@ -18,6 +18,19 @@ body * {
   z-index: 2;
 }
 
+@media (max-width: 768px) {
+  #wd-kanbas-navigation {
+    width: 100%;
+    height: 60px;
+    flex-direction: row; /* Make sure flex container is defined */
+    top: 0;
+    left: 0;
+    bottom: auto;
+  }
+}
+
+
+
 /* Main Content Offset for Sidebar */
 @media (min-width: 768px) {
   .wd-main-content-offset {
@@ -55,6 +68,9 @@ body * {
 .wd-lesson {
   border-left: 3px solid green !important; /* Adds a green border for lessons */
 }
+.wd-assignment {
+  border-left: 3px solid green !important; /* Adds a green border for lessons */
+}
 
 .custom-input-size {
   height: 40px;  /* Example height, adjust as needed */
@@ -87,4 +103,28 @@ body * {
 
 .list-group-item {
   border-left: 3px solid green; /* Styling for list items */
+}
+
+.wd-rounded-corners-all-around {
+  border-radius: 50px;
+  height: 10px;  
+  width: 200px; 
+ }
+ 
+ .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px; /* Adjust as necessary */
+  z-index: 10;
+  color: #495057; /* Default input text color */
+}
+
+.search-input {
+  padding-left: 2.5em; /* Make space for the icon */
+  width: 100%;
 }
