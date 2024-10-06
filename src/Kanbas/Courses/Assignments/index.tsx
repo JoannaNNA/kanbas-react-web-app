@@ -11,7 +11,7 @@ export default function Assignments() {
     <div>
       <ModulesControls /><br /><br /><br /><br />
       <ul id="wd-assignments" className="list-group rounded-0">
-        <li className="wd-assignment list-group-item p-0 mb-5 fs-5 border-gray">
+        <li className="wd-assignment list-group-item p-0 mb-5 fs-5 ">
         <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center"> 
   <h3 className="m-0 d-flex align-items-center">
     <BsGripVertical className="me-2 fs-3" />
@@ -23,7 +23,7 @@ export default function Assignments() {
       40% of Total
     </p>
     <ModuleControlButtons />
-    <button className="btn btn-link ms-2">+</button>
+    {/* <button className="btn btn-link ms-2">+</button> */}
   </div>
 </div>
 
