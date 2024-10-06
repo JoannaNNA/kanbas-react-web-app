@@ -26,10 +26,10 @@ export default function Kanbas() {
             <Route path="/" element={<Navigate to="/Kanbas/Account" />} />
 
             {/* Account route as the landing page */}
-            <Route path="/Account" element={<Account />} />
-
+            <Route path="/Account/*" element={<Account />} />
+            
             {/* Signin page route under Account */}
-            <Route path="/Account/Signin" element={<Signin />} />
+            {/* <Route path="/Account/Signin" element={<Signin />} /> */} 
 
             {/* Other routes */}
             <Route path="/Dashboard" element={<Dashboard />} />
