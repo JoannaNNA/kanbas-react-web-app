@@ -1,10 +1,10 @@
-/* General Body Styles */
-body {
-  margin: 0;  /* Removing unnecessary global margin */
-  padding: 0; /* Removing unnecessary global padding */
-}
-body * {
-  font-family: Arial, Helvetica, sans-serif;
+body   {  margin: 0;  padding: 0;  }
+body * {  font-family: Arial, Helvetica, sans-serif;  }
+
+@media (min-width: 768px) {
+  #wd-kanbas .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
 }
 
 /* Sidebar Fixed Position */
@@ -18,6 +18,7 @@ body * {
   z-index: 2;
 }
 
+
 @media (max-width: 768px) {
   #wd-kanbas-navigation {
     width: 100%;
@@ -30,7 +31,6 @@ body * {
 }
 
 
-
 /* Main Content Offset for Sidebar */
 @media (min-width: 768px) {
   .wd-main-content-offset {
@@ -39,11 +39,11 @@ body * {
   }
 }
 
-/* List Group - Active Item Styles */
+/* List Group - Active Item Styles HOME */
 .list-group.wd > .list-group-item.active {
-  color: black;
-  background-color: white;
-  border-left: 3px solid black !important; /* Emphasizes the selected link */
+  color: rgb(27, 25, 25); 
+  background-color: rgb(250, 249, 249);
+  border-left: 3px solid rgb(15, 15, 15) !important; /* Emphasizes the selected link */
 }
 
 /* Button Secondary Styles */
@@ -54,14 +54,15 @@ body * {
   --bs-btn-hover-color: #ba6767 !important; /* Color when hovering over the button */
 }
 
-/* Background for Secondary Elements */
+/* Background for Secondary Elements/ FOR HEADER AND BUTTONS*/
 .bg-secondary {
   --bs-secondary-rgb: 199, 205, 209; /* Defines a custom gray background color */
 }
 
+
 /* List Group Item Border */
 .list-group-item {
-  --bs-list-group-border-color: gray; /* Defines border color for list items */
+  --bs-list-group-border-color: rgb(191, 182, 182); /* Defines border color for list items */
 }
 
 /* Lesson Styling */
@@ -96,10 +97,7 @@ body * {
   background-color: #e9ecef; /* Bootstrap default for input group prepend */
 }
 
-.btn-success, .btn-primary {
-  float: right; /* Ensures buttons are floated to the right */
-  margin-left: 10px; /* Space between buttons */
-}
+
 
 .list-group-item {
   border-left: 3px solid green; /* Styling for list items */
@@ -121,7 +119,7 @@ body * {
   position: absolute;
   left: 10px; /* Adjust as necessary */
   z-index: 10;
-  color: #495057; /* Default input text color */
+  color: #6ea7df; /* Default input text color */
 }
 
 .search-input {

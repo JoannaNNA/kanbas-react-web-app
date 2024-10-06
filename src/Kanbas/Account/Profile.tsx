@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Profile() {
   return (
-    <div id="wd-profile-screen" className="auth-container">
+    <div id="wd-profile-screen" style={{ width: 300 }}>
       <h1>Profile</h1>
       <input id="wd-username" defaultValue="alice" placeholder="username" className="form-control mb-2"/>
       <input id="wd-password" defaultValue="123" placeholder="password" type="password" className="form-control mb-2"/>
@@ -16,7 +16,10 @@ export default function Profile() {
         <option value="FACULTY">Faculty</option>
         <option value="STUDENT">Student</option>
       </select>
-      <Link to="/Kanbas/Account/Signin" className="btn btn-link w-100">Sign out</Link>
+      <Link id="wd-signin-btn"
+            to="/Kanbas/Account/Signin" 
+            className="btn btn-danger w-100">
+            Sign out</Link>
     </div>
   );
 }

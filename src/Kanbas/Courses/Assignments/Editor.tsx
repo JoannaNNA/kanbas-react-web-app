@@ -118,8 +118,8 @@ export default function AssignmentEditor() {
 
             {/* Action Buttons */}
             <div className="d-flex justify-content-end">
-                <button className="btn btn-secondary me-2">Cancel</button>
-                <button className="btn btn-success">Save</button>
+                <button className="btn btn-secondary  me-2">Cancel</button>
+                <button className="btn btn-success ">Save</button>
             </div>
         </div>
     );

@@ -19,7 +19,7 @@ export default function Dashboard() {
                   <p className="wd-dashboard-course-title card-text">
                       Full Stack software developer
                   </p>
-                  <button className="btn btn-primary"> <MdEditDocument /> </button>
+                  <button className="btn btn-secondary"> <MdEditDocument /> </button>
                 </div>
               </Link>
             </div>
@@ -37,7 +37,7 @@ export default function Dashboard() {
                     <p className="wd-dashboard-course-title card-text">
                     Python For Beginners
                     </p>
-                    <button className="btn btn-primary"> <MdEditDocument /> </button>
+                    <button className="btn btn-secondary"> <MdEditDocument /> </button>
                   </div>
                 </Link>
             </div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
                     <p className="wd-dashboard-course-title card-text">
                       Making AI helpful for everyone
                     </p>
-                    <button className="btn btn-primary"> <MdEditDocument /> </button>
+                    <button className="btn btn-secondary"> <MdEditDocument /> </button>
                   </div>
                 </Link>
             </div>
@@ -75,7 +75,7 @@ export default function Dashboard() {
                     <p className="wd-dashboard-course-title card-text">
                     Introduction to Algorithms
                     </p>
-                    <button className="btn btn-primary"> <MdEditDocument /> </button>
+                    <button className="btn btn-secondary"> <MdEditDocument /> </button>
                   </div>
                 </Link>
             </div>
@@ -93,7 +93,7 @@ export default function Dashboard() {
                     <p className="wd-dashboard-course-title card-text">
                      Learn C Programming
                     </p>
-                    <button className="btn btn-primary"> <MdEditDocument /> </button>
+                    <button className="btn btn-secondary"> <MdEditDocument /> </button>
                   </div>
                 </Link>
             </div>
@@ -112,7 +112,7 @@ export default function Dashboard() {
                     <p className="wd-dashboard-course-title card-text">
                     Java is a high-level, class-based, object-oriented programming language
                     </p>
-                    <button className="btn btn-primary"> <MdEditDocument /> </button>
+                    <button className="btn btn-secondary"> <MdEditDocument /> </button>
                   </div>
                 </Link>
             </div>
@@ -131,7 +131,7 @@ export default function Dashboard() {
                     <p className="wd-dashboard-course-title card-text">
                       JavaScript Introduction
                     </p>
-                    <button className="btn btn-primary"> <MdEditDocument /> </button>
+                    <button className="btn btn-secondary"> <MdEditDocument /> </button>
                   </div>
                 </Link>
             </div>

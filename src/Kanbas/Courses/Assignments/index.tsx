@@ -19,7 +19,7 @@ export default function Assignments() {
     Assignment Week 1 
   </h3>
   <div className="d-flex align-items-center">
-    <p className="mb-0 me-3 bg-light p-2 rounded" style={{ border: '1px solid blue', maxWidth: '120px', whiteSpace: 'nowrap' }}>
+    <p className="mb-0 me-3 bg-light p-2 rounded" style={{  maxWidth: '120px', whiteSpace: 'nowrap' }}>
       40% of Total
     </p>
     <ModuleControlButtons />

@@ -6,7 +6,7 @@ export default function ModulesControls() {
     <div id="wd-modules-controls" className="text-nowrap">
       <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end">
         <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-        Add Module
+         Module
       </button>
       <div className="dropdown d-inline me-1 float-end">
         <button id="wd-publish-all-btn" className="btn btn-lg btn-secondary dropdown-toggle"
@@ -41,12 +41,12 @@ export default function ModulesControls() {
           </li>
         </ul>
       </div>
-      <button id="wd-view-progress-btn" className="btn btn-lg btn-info me-1 float-end">
-        <FaChartLine className="position-relative me-2" style={{ bottom: "1px" }} />
+      <button id="wd-view-progress-btn" className="btn btn-lg btn-secondary me-1 float-end">
+       
         View Progress
       </button>
-      <button id="wd-collapse-all-btn" className="btn btn-lg btn-warning me-1 float-end">
-        <FaCompress className="position-relative me-2" style={{ bottom: "1px" }} />
+      <button id="wd-collapse-all-btn" className="btn btn-lg btn-secondary me-1 float-end">
+       
         Collapse All
       </button>
     </div>

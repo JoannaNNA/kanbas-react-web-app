@@ -15,7 +15,7 @@ export default function Courses() {
     <div id="wd-courses">
       <h2 className="text-danger">
         <FaAlignJustify className="me-4 fs-4 mb-1" />
-        Course {courseId} {pageName && `- ${pageName}`}
+        Course 1234 
       </h2> 
       <hr />
       <div className="d-flex">
