@@ -2,8 +2,9 @@
 
 export default function BootstrapGrids() {
     return (
+
         <div id="wd-bs-grib">
-        <h2>Bootstrap</h2>
+        <h2>Bootstrap3.3.3</h2>
         <div id="wd-bs-grid-system">
             <h2>Grid system</h2>
             <div className="row">
@@ -36,7 +37,12 @@ export default function BootstrapGrids() {
         </div>
 
         <div id="wd-bs-responsive-grids">
-        <h2>Responsive grid system</h2>
+        <h2>Wide browser window shows 4 columns
+        /Moderate width browser window shows 2 columns
+        /Thin browser window shows only 1 column
+        </h2>
+        <h3>Responsive grid system</h3>
+        
             <div className="row">
                 <div className="col-12 col-md-6 col-xl-3 
                                 bg-warning">

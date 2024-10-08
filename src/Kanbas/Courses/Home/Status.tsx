@@ -2,6 +2,8 @@ import { MdDoNotDisturbAlt } from "react-icons/md";
 import { FaCheckCircle } from "react-icons/fa";
 import { BiImport } from "react-icons/bi";
 import { LiaFileImportSolid } from "react-icons/lia";
+import { TfiTarget } from "react-icons/tfi";
+import { TiChartBar } from "react-icons/ti";
 {/* Find more icons */}
 export default function CourseStatus() {
   return (
@@ -22,7 +24,7 @@ export default function CourseStatus() {
       <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
         <LiaFileImportSolid className="me-2 fs-5" /> Import from Commons </button>
       <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
-        <LiaFileImportSolid className="me-2 fs-5" /> View Course Stream </button>
+        <TfiTarget  className="me-2 fs-5" /> View Course Stream </button>
       <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">
        <LiaFileImportSolid className="me-2 fs-5" /> New Announcement </button>
       <button className="btn btn-lg btn-secondary w-100 mt-1 text-start">

@@ -1,5 +1,7 @@
 import { FaPlus, FaChartLine, FaCompress } from "react-icons/fa";
 import GreenCheckmark from "./GreenCheckmark";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export default function ModulesControls() {
   return (
