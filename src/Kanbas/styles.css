@@ -31,6 +31,19 @@ body {
     padding-left: 140px !important; /* Ensures content shifts to the right when sidebar is visible */
   }
 }
+@media (max-width: 360px) {
+  #wd-course-status {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 600px) {
+  #wd-courses-navigation,
+  #wd-kanbas-navigation {
+    display: none !important;
+  }
+}
 @media (min-width: 992px) {
   /* Navbar styling for large screens */
   .navbar {
@@ -189,4 +202,23 @@ body {
 
 .input-group-text {
   background-color: #e9ecef;
+}
+
+
+#wd-modules-controls {
+  top: 50;
+}
+
+
+#wd-modules {
+  display: block;
+  width: 100%;
+}
+
+.wd-module, .wd-lesson {
+  width: 100%;
+  max-width: 100%; /* Ensures the module takes up available width */
+  min-width: fit-content; 
+ 
+  
 }

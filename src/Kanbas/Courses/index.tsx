@@ -43,7 +43,13 @@ export default function Courses() {
                 </ul>
               </div>
             
-              <div className="offcanvas offcanvas-end" tabIndex={-1} id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div className="offcanvas offcanvas-end" tabIndex={-1} id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel"style={{
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '300px', 
+                    height: '400px', 
+                  }}>
                 <div className="offcanvas-header">
                   <h5 className="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
                   <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
