@@ -13,19 +13,19 @@ export default function Assignments() {
       <ul id="wd-assignments" className="list-group rounded-0">
         <li className="wd-assignment list-group-item p-0 mb-5 fs-5 ">
         <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center"> 
-  <h3 className="m-0 d-flex align-items-center">
-    <BsGripVertical className="me-2 fs-3" />
-    <MdEditDocument style={{ marginRight: '1rem' }}/>
-    Assignment Week 1 
-  </h3>
-  <div className="d-flex align-items-center">
-    <p className="mb-0 me-3 bg-light p-2 rounded" style={{  maxWidth: '120px', whiteSpace: 'nowrap' }}>
-      40% of Total
-    </p>
-    <ModuleControlButtons />
-    {/* <button className="btn btn-link ms-2">+</button> */}
-  </div>
-</div>
+          <h3 className="m-0 d-flex align-items-center">
+            <BsGripVertical className="me-2 fs-3" />
+            <MdEditDocument style={{ marginRight: '1rem' }}/>
+            Assignment Week 1 
+          </h3>
+          <div className="d-flex align-items-center">
+            <p className="mb-0 me-3 bg-light p-2 rounded" style={{  maxWidth: '120px', whiteSpace: 'nowrap' }}>
+              40% of Total
+            </p>
+            <ModuleControlButtons />
+            {/* <button className="btn btn-link ms-2">+</button> */}
+          </div>
+        </div>
 
           <ul className="wd-tasks list-group rounded-0">
           <li className="wd-task list-group-item p-3 ps-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
