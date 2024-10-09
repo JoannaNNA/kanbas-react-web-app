@@ -1,122 +1,159 @@
-body   {  margin: 0;  padding: 0;  }
-body * {  font-family: Arial, Helvetica, sans-serif;  }
-
-@media (min-width: 768px) {
-  #wd-kanbas .wd-main-content-offset {
-    padding-left: 140px !important;
-  }
+/* Reset margin and padding */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Fixed navbar styling */
+.navbar {
+  width: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 1030; /* Ensures it's on top of other elements */
+  left: 0;
+  right: 0;
+}
+
+/* Navbar styles for larger screens (default) */
+.navbar.bg-body-tertiary {
+  background-color: #f8f9fa; /* Light background */
+}
+
+.navbar .navbar-brand, 
+.navbar .nav-link {
+  color: black; /* Default black text for larger screens */
+}
+
+/* Sidebar for larger screens */
+@media (min-width: 768px) {
+  .wd-main-content-offset {
+    padding-left: 140px !important; /* Ensures content shifts to the right when sidebar is visible */
+  }
+}
+@media (min-width: 992px) {
+  /* Navbar styling for large screens */
+  .navbar {
+    width: calc(100% - 120px); /* Pre-reserve space for the sidebar */
+    margin-left: 110px; /* Same as the sidebar width */
+    top: 0;
+    position: fixed;
+    z-index: 1030; /* Ensure it stays below the sidebar */
+    background-color: #f8f9fa; /* Light background color */
+    height: 50px; /* Set a consistent height */
+    padding-left: 15px;
+    padding-right: 15px;
+  }}
 /* Sidebar Fixed Position */
 #wd-kanbas-navigation {
-  width: 110px; /* Width of the sidebar */
+  width: 110px; /* Sidebar width */
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   background-color: black;
-  z-index: 2;
+  z-index: 1040;
 }
 
-@media (max-width: 991px) { /* 这里的 991px 对应 Bootstrap 的 lg 尺寸 */
+
+/* Navbar styles for smaller screens */
+@media (max-width: 991px) {
   .navbar {
     background-color: black !important;
+    width: calc(100% - 110px); /* Leave space for the sidebar */
+    margin-left: 110px; /* Same as the sidebar width */
+    top: 0;
+    position: fixed;
+    z-index: 1030;
   }
-  .navbar-brand, .navbar-nav .nav-link {
+
+  /* Toggler button styles */
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Navbar brand and link styles for smaller screens */
+  .navbar-brand, 
+  .navbar-nav .nav-link {
     color: white !important;
   }
-}
-/* @media (max-width: 768px) {
-  #wd-kanbas-navigation {
-    width: 100%;
-    height: 60px;
-    flex-direction: row; /* Make sure flex container is defined */
-    /* top: 0;
-    left: 0;
-    bottom: auto;
+
+  /* Offcanvas background */
+  .offcanvas {
+    background-color: white !important;
   }
-} */ 
+
+  /* Dropdown styles */
+  .dropdown-menu {
+    background-color: black;
+    color: white;
+  }
+
+  .dropdown-item {
+    color: white !important;
+  }
+
+  /* Close button styling for white background */
+  .btn-close-white {
+    filter: invert(1);
+  }
+}
+
 
 
 /* Main Content Offset for Sidebar */
 @media (min-width: 768px) {
   .wd-main-content-offset {
-    margin-left: 120px; /* Matches sidebar width to prevent overlap */
-    padding: 20px; /* Optional: Add padding for better content alignment */
+    margin-left: 120px;
+    padding: 20px; /* Adds padding for better content alignment */
   }
 }
 
-/* List Group - Active Item Styles HOME */
+/* Sidebar Active Link Style */
 .list-group.wd > .list-group-item.active {
   color: rgb(27, 25, 25); 
   background-color: rgb(250, 249, 249);
-  border-left: 3px solid rgb(15, 15, 15) !important; /* Emphasizes the selected link */
+  border-left: 3px solid rgb(15, 15, 15) !important;
 }
 
-/* Button Secondary Styles */
+/* Button styles */
 .btn-secondary {
   --bs-btn-color: #000 !important;
   --bs-btn-bg: #c7cdd1 !important;
   --bs-btn-border-color: #c7cdd1 !important;
-  --bs-btn-hover-color: #ba6767 !important; /* Color when hovering over the button */
+  --bs-btn-hover-color: #ba6767 !important; 
 }
 
-/* Background for Secondary Elements/ FOR HEADER AND BUTTONS*/
+/* Background for secondary elements */
 .bg-secondary {
-  --bs-secondary-rgb: 199, 205, 209; /* Defines a custom gray background color */
+  --bs-secondary-rgb: 199, 205, 209; 
 }
 
-
-/* List Group Item Border */
+/* List group item borders */
 .list-group-item {
-  --bs-list-group-border-color: rgb(191, 182, 182); /* Defines border color for list items */
+  --bs-list-group-border-color: rgb(191, 182, 182);
+  border-left: 3px solid green;
 }
 
-/* Lesson Styling */
-.wd-lesson {
-  border-left: 3px solid green !important; /* Adds a green border for lessons */
-}
-.wd-assignment {
-  border-left: 3px solid green !important; /* Adds a green border for lessons */
-}
-
+/* Input field customization */
 .custom-input-size {
-  height: 40px;  /* Example height, adjust as needed */
-  width: 300px;  /* Example width, adjust as needed */
+  height: 40px;
+  width: 300px;
 }
 
+/* Authentication form container */
 .auth-container {
   max-width: 360px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
 
-/* Assignments.css */
-.container {
-  max-width: 800px; /* Adjust based on preference */
-}
-
-.input-group-text {
-  background-color: #e9ecef; /* Bootstrap default for input group prepend */
-}
-
-
-
-.list-group-item {
-  border-left: 3px solid green; /* Styling for list items */
-}
-
-.wd-rounded-corners-all-around {
-  border-radius: 50px;
-  height: 10px;  
-  width: 200px; 
- }
- 
- .search-container {
+/* Input container with icon */
+.search-container {
   position: relative;
   display: flex;
   align-items: center;
@@ -124,13 +161,32 @@ body * {  font-family: Arial, Helvetica, sans-serif;  }
 
 .search-icon {
   position: absolute;
-  left: 10px; /* Adjust as necessary */
+  left: 10px;
   z-index: 10;
-  color: #6ea7df; /* Default input text color */
+  color: #6ea7df;
 }
 
 .search-input {
-  padding-left: 2.5em; /* Make space for the icon */
+  padding-left: 2.5em; /* Space for icon */
   width: 100%;
 }
 
+/* Additional UI styling */
+.wd-rounded-corners-all-around {
+  border-radius: 50px;
+  height: 10px;
+  width: 200px;
+}
+
+.wd-lesson, .wd-assignment {
+  border-left: 3px solid green !important; /* Green border for lessons and assignments */
+}
+
+/* Container max width for assignments */
+.container {
+  max-width: 800px;
+}
+
+.input-group-text {
+  background-color: #e9ecef;
+}
