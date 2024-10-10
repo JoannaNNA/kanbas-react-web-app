@@ -39,16 +39,16 @@ export default function Courses() {
                   <li className="nav-item dropdown me-5">
                     <button className="btn dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
                     </button>
-                    <ul className="dropdown-menu dropdown-menu-dark show style={{ color: 'rgb(14, 6, 6)' }}" data-bs-popper="static">
-                      <li><a className="dropdown-item" href="/Kanbas/Courses/Home"><TiHomeOutline />Home</a></li>
-                      <li><a className="dropdown-item" href="/Kanbas/Courses/Modules"><PiTreeStructureFill />Modules</a></li>
-                      <li><a className="dropdown-item" href="#"><GoPlug />Piazza</a></li>
-                      <li><a className="dropdown-item" href="#"><GoPlug />Zoom Meeting</a></li>
-                      <li><a className="dropdown-item" href="#"><MdOutlineAssignment />Piazza</a></li>
-                      <li><a className="dropdown-item" href="#"><GiJetpack />Quizzes</a></li>
-                      <li><a className="dropdown-item" href="#"><MdMenuBook />Grade</a></li>
-                      <li><a className="dropdown-item" href="/Kanbas/Courses/People"><MdPeopleOutline />People</a></li>
-                      <li><a className="dropdown-item" href="#"><CiSettings />Setting</a></li>
+                    <ul className="dropdown-menu dropdown-menu-dark show" data-bs-popper="static">
+                      <li><a className="dropdown-item text-danger" href="/Kanbas/Courses/Home"><TiHomeOutline />Home</a></li>
+                      <li><a className="dropdown-item text-danger" href="/Kanbas/Courses/Modules"><PiTreeStructureFill />Modules</a></li>
+                      <li><a className="dropdown-item text-danger" href="#"><GoPlug />Piazza</a></li>
+                      <li><a className="dropdown-item text-danger" href="#"><GoPlug />Zoom Meeting</a></li>
+                      <li><a className="dropdown-item text-danger" href="#"><MdOutlineAssignment />Piazza</a></li>
+                      <li><a className="dropdown-item text-danger" href="#"><GiJetpack />Quizzes</a></li>
+                      <li><a className="dropdown-item text-danger" href="#"><MdMenuBook />Grade</a></li>
+                      <li><a className="dropdown-item text-danger" href="/Kanbas/Courses/People"><MdPeopleOutline />People</a></li>
+                      <li><a className="dropdown-item text-danger" href="#"><CiSettings />Setting</a></li>
 
                     </ul>
                   </li>

@@ -5,11 +5,15 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 import ModuleControlButtons from '../Modules/ModulesControlButtons';
 import { CiSearch } from 'react-icons/ci';
 import { MdEditDocument } from "react-icons/md";
+import React, { useState } from 'react';
+import { FaPlus } from "react-icons/fa";
+import AssignmentsControls from "./AssignmentsControls";
 
 export default function Assignments() {
   return (
     <div>
-      <ModulesControls /><br /><br /><br /><br />
+     
+     <AssignmentsControls /><br /><br /><br />
       <ul id="wd-assignments" className="list-group rounded-0">
         <li className="wd-assignment list-group-item p-0 mb-5 fs-5 ">
         <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center"> 
@@ -85,5 +89,6 @@ export default function Assignments() {
         
       </ul>
     </div>
+  
   );
 }
