@@ -8,7 +8,7 @@ export default function AccountNavigation() {
             Signin
           </Link>
       
-          <Link to="/Kanbas/Account/Signup" className="nav-link">
+          <Link to="/Kanbas/Account/Signup" className="nav-link ">
             Signup
           </Link>
       

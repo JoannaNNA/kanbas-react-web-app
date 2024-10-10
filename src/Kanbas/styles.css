@@ -15,15 +15,14 @@ body {
   right: 0;
 }
 
+.navbar-nav .nav-link {
+  color: rgb(230, 34, 34) !important;
+}
 /* Navbar styles for larger screens (default) */
 .navbar.bg-body-tertiary {
   background-color: #f8f9fa; /* Light background */
 }
 
-.navbar .navbar-brand, 
-.navbar .nav-link {
-  color: black; /* Default black text for larger screens */
-}
 
 /* Sidebar for larger screens */
 @media (min-width: 900px) {
@@ -36,6 +35,10 @@ body {
     display: none !important;
   }
 }
+/* .navbar .navbar-brand, 
+.navbar .nav-link {
+  color: black; /* Default black text for larger screens */
+/* /* }  */
 
 
 @media (max-width: 768px) {
@@ -47,7 +50,7 @@ body {
 @media (min-width: 768px) {
   /* Navbar styling for large screens */
   .navbar {
-    /* width: calc(100% - 1px); Pre-reserve space for the sidebar */
+  
     margin-left: 140px; /* Same as the sidebar width */
     display: flex;
     top: 0;
@@ -66,6 +69,7 @@ body {
 }
 /* Sidebar Fixed Position */
 #wd-kanbas-navigation {
+  display: flex;
   width: 110px; /* Sidebar width */
   position: fixed;
   top: 0;
@@ -86,13 +90,16 @@ body {
     top: 0;
     position: fixed;
     z-index: 1030;
+    color: rgb(238, 234, 234);
   
   }
-  .navbar {
-  color: rgb(238, 234, 234);
+  .dropdown-menu{
+    /* color no change */
+    color: rgb(14, 6, 6) !important;
+    background-color: rgb(12, 11, 11) !important;
   }
  
-
+ 
   /* Toggler button styles */
   .navbar-toggler {
     border-color: rgba(255, 255, 255, 0.1);
@@ -106,9 +113,7 @@ body {
   }
   /* Navbar brand and link styles for smaller screens */
    
-  .navbar-nav .nav-link {
-    color: rgb(12, 11, 11) !important;
-  }
+
  
   /* Offcanvas background */
   .offcanvas {
@@ -152,7 +157,7 @@ body {
   --bs-btn-color: #000 !important;
   --bs-btn-bg: #c7cdd1 !important;
   --bs-btn-border-color: #c7cdd1 !important;
-  --bs-btn-hover-color: #ba6767 !important; 
+  --bs-btn-hover-color: #d87474 !important; 
 }
 
 /* Background for secondary elements */
