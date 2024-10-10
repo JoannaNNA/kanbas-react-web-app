@@ -4,7 +4,7 @@ import AssignmentEditor from "./Assignments/Editor";
 import Modules from "./Modules";
 import Home from "./Home";
 import { Navigate, Route, Routes } from "react-router";
-import { FaAlignJustify } from "react-icons/fa";  // 确保图标的版本号正确
+// import { FaAlignJustify } from "react-icons/fa";  
 import PeopleTable from "./People/Table";
 import { useParams } from 'react-router-dom';
 
@@ -20,8 +20,8 @@ export default function Courses() {
                 <span className="navbar-toggler-icon"></span>
               </button>
               <a className="navbar-brand" href="#"> Course 1234</a>
-
               <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
+               his
                 <ul className="navbar-nav">
                   <li className="nav-item dropdown">
                     <button className="btn btn-dark dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">

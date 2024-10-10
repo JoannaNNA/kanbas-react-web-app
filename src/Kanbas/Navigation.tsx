@@ -52,7 +52,7 @@ export default function KanbasNavigation() {
     <MdOutlineSettings className="fs-1 text-danger" /><br />
     Labs </Link>
 
-    {/* complete styling the rest of the links */}
+    
 </div>
 );}
 

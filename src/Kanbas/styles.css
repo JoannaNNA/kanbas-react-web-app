@@ -26,29 +26,30 @@ body {
 }
 
 /* Sidebar for larger screens */
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .wd-main-content-offset {
     padding-left: 140px !important; /* Ensures content shifts to the right when sidebar is visible */
   }
 }
-@media (max-width: 360px) {
+@media (max-width: 1200px) {
   #wd-course-status {
     display: none !important;
   }
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #wd-courses-navigation,
   #wd-kanbas-navigation {
     display: none !important;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   /* Navbar styling for large screens */
   .navbar {
-    width: calc(100% - 120px); /* Pre-reserve space for the sidebar */
-    margin-left: 110px; /* Same as the sidebar width */
+    /* width: calc(100% - 1px); Pre-reserve space for the sidebar */
+    margin-left: 140px; /* Same as the sidebar width */
+    display: flex;
     top: 0;
     position: fixed;
     z-index: 1030; /* Ensure it stays below the sidebar */
@@ -56,7 +57,13 @@ body {
     height: 50px; /* Set a consistent height */
     padding-left: 15px;
     padding-right: 15px;
-  }}
+  }
+  .navbar-brand {
+    margin-right: auto;
+    padding-left: 15px;
+  }
+
+}
 /* Sidebar Fixed Position */
 #wd-kanbas-navigation {
   width: 110px; /* Sidebar width */
@@ -66,31 +73,43 @@ body {
   left: 0;
   background-color: black;
   z-index: 1040;
+
 }
 
 
 /* Navbar styles for smaller screens */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   .navbar {
+    display: flex;
     background-color: black !important;
-    width: calc(100% - 110px); /* Leave space for the sidebar */
-    margin-left: 110px; /* Same as the sidebar width */
+    width: calc(100%); 
     top: 0;
     position: fixed;
     z-index: 1030;
+  
   }
+  .navbar {
+  color: rgb(238, 234, 234);
+  }
+ 
 
   /* Toggler button styles */
   .navbar-toggler {
     border-color: rgba(255, 255, 255, 0.1);
   }
 
-  /* Navbar brand and link styles for smaller screens */
-  .navbar-brand, 
-  .navbar-nav .nav-link {
-    color: white !important;
+  .navbar-brand {
+    color: rgb(233, 220, 220) !important;
+    text-align: center; /* Center the text inside the brand element */
+    margin: 0 auto; /* Ensure brand stays in the center */
+    flex-grow: 0; /* Prevent .navbar-brand from growing and pushing content */
   }
-
+  /* Navbar brand and link styles for smaller screens */
+   
+  .navbar-nav .nav-link {
+    color: rgb(12, 11, 11) !important;
+  }
+ 
   /* Offcanvas background */
   .offcanvas {
     background-color: white !important;
@@ -115,21 +134,20 @@ body {
 
 
 /* Main Content Offset for Sidebar */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   .wd-main-content-offset {
     margin-left: 120px;
-    padding: 20px; /* Adds padding for better content alignment */
+    padding: 10px; /* Adds padding for better content alignment */
   }
 }
 
 /* Sidebar Active Link Style */
 .list-group.wd > .list-group-item.active {
   color: rgb(27, 25, 25); 
-  background-color: rgb(250, 249, 249);
+  background-color: rgb(250, 246, 246);
   border-left: 3px solid rgb(15, 15, 15) !important;
 }
-
-/* Button styles */
+ */
 .btn-secondary {
   --bs-btn-color: #000 !important;
   --bs-btn-bg: #c7cdd1 !important;

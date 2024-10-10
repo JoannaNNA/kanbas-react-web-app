@@ -11,8 +11,8 @@ export default function ModulesControls() {
          Module
       </button>
       <div className="dropdown d-inline me-1 float-end">
-        <button id="wd-publish-all-btn" className="btn btn-lg btn-secondary dropdown-toggle"
-          type="button" data-bs-toggle="dropdown">
+        <button id="dropdownMenuButton" className="btn btn-lg btn-secondary dropdown-toggle"
+          type="button" data-toggle="dropdown">
           <GreenCheckmark />
           Publish All
         </button>
@@ -37,7 +37,7 @@ export default function ModulesControls() {
           </li>
           <li>
             <a id="wd-unpublish-modules-only-btn" className="dropdown-item" href="#">
-              <GreenCheckmark />
+              <GreenCheckmark />logssslog
               Unpublish modules only
             </a>
           </li>
