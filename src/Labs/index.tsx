@@ -6,7 +6,7 @@ import Lab2 from "./Lab2";
 import Lab3 from "./Lab3";
 export default function Labs() {
   return (
-    <div>
+    <div className="p-3">
       <h1>Labs</h1>
       <p>Developed by: Na Zhou</p> 
       <p>
@@ -17,10 +17,10 @@ export default function Labs() {
       <a href="https://github.com/JoannaNNA/kanbas-react-web-app.git" id="wd-github">GitHub Repository</a>
       
       <Routes>
-        <Route path="/" element={<Navigate to="lab1" />} />
-        <Route path="lab1/*" element={<Lab1 />} />
-        <Route path="lab2/*" element={<Lab2 />} />
-        <Route path="lab3/*" element={<Lab3 />} />
+        <Route path="/" element={<Navigate to="Lab1" />} />
+        <Route path="Lab1/*" element={<Lab1 />} />
+        <Route path="Lab2/*" element={<Lab2 />} />
+        <Route path="Lab3/*" element={<Lab3 />} />
       </Routes>
     </div>
   );

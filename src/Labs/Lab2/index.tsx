@@ -24,7 +24,7 @@ import BootstrapNavigation from "./BootstrapNavigation";
 
 export default function Lab2() {
   return (
-    <div className="container">
+    <div  id="wd-lab2" className="containerlab2">
       
         <ul>
         <li><Link to="foregroundcolor">Foreground Color</Link></li>
