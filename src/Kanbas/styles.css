@@ -152,7 +152,7 @@ body {
   background-color: rgb(250, 246, 246);
   border-left: 3px solid rgb(15, 15, 15) !important;
 }
- */
+
 .btn-secondary {
   --bs-btn-color: #000 !important;
   --bs-btn-bg: #c7cdd1 !important;
