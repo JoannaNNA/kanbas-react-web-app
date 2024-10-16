@@ -1,11 +1,14 @@
 import CoursesNavigation from "./Navigation";
+import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
+import { courses } from "../Database";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Modules from "./Modules";
 import Home from "./Home";
-import { Navigate, Route, Routes } from "react-router";
 import PeopleTable from "./People/Table";
-import { useParams } from 'react-router-dom';
+import { FaAlignJustify } from "react-icons/fa6";
+import * as db from "../Database";
+
 import { TfiDashboard } from "react-icons/tfi";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { FaBook } from "react-icons/fa6";
@@ -22,20 +25,25 @@ import { MdPeopleOutline } from "react-icons/md";
 import { MdMenuBook } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
 export default function Courses() {
-  const { courseId, pageName } = useParams();
-  
+  const { cid } = useParams();
+  const course = courses.find((course) => course._id === cid);
+  const { pathname } = useLocation();
   return (
     <div id="wd-courses">
+      
            
           <nav className="navbar bg-body-tertiary fixed-top">
             <div className="container-fluid">
               <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <a className="navbar-brand" href="#"> Course 1234</a>
-              {/* <div className="collapse navbar-collapse" id="navbarNavDarkDropdown"> */}
-              
-                {/* <ul className="navbar-nav"> */}
+              <a className="navbar-brand" href="#">
+              <h2 className="text-danger">
+                <FaAlignJustify className="me-4 fs-4 mb-1" />
+                {course && course.name} &gt; {pathname.split("/")[4]}
+              </h2>
+              </a>
+
                   <li className="nav-item dropdown me-5">
                     <button className="btn dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
                     </button>
@@ -52,10 +60,9 @@ export default function Courses() {
 
                     </ul>
                   </li>
-                {/* </ul>
-              </div> */}
+               
             
-              <div id="offcanvasNavbar" className="offcanvas offcanvas-end" tabIndex={-1}  aria-labelledby="offcanvasNavbarLabel"style={{
+              <div id="offcanvasNavbar" className="offcanvas offcanvas-end text-danger" tabIndex={-1}  aria-labelledby="offcanvasNavbarLabel"style={{
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',

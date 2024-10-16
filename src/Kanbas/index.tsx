@@ -11,8 +11,7 @@ export default function Kanbas() {
   return (
     <>
       <div id="wd-kanbas">
-      </div>
-      <div>
+      <KanbasNavigation />
       {/* <table width="100%"> */}
           {/* <tr><td valign="top"> */}
             <KanbasNavigation />

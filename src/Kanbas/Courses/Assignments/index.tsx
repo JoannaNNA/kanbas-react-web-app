@@ -8,8 +8,11 @@ import { MdEditDocument } from "react-icons/md";
 import React, { useState } from 'react';
 import { FaPlus } from "react-icons/fa";
 import AssignmentsControls from "./AssignmentsControls";
+import { useParams } from "react-router";
+import * as db from "../../Database";
 
 export default function Assignments() {
+  
   return (
     <div>
      

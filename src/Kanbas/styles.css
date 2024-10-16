@@ -149,7 +149,7 @@ body {
 /* Sidebar Active Link Style */
 .list-group.wd > .list-group-item.active {
   color: rgb(27, 11, 11); 
-  background-color: rgb(250, 246, 246);
+  background-color: rgb(245, 241, 241);
   border-left: 3px solid rgb(15, 15, 15) !important;
 }
  */
