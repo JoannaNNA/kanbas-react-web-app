@@ -26,7 +26,8 @@ import { MdMenuBook } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
 export default function Courses() {
   const { cid } = useParams();
-  const course = courses.find((course) => course._id === cid);
+  // const parameters = useParams();   show {/* {JSON.stringify(parameters)} */}
+  const course = courses.find((course) => course._id === cid); //course id
   const { pathname } = useLocation();
   return (
     <div id="wd-courses">
@@ -42,6 +43,7 @@ export default function Courses() {
                 <FaAlignJustify className="me-4 fs-4 mb-1" />
                 {course && course.name} &gt; {pathname.split("/")[4]}
               </h2>
+              {/* {JSON.stringify(course,null,3)} debug */}
               </a>
 
                   <li className="nav-item dropdown me-5">
@@ -115,7 +117,7 @@ export default function Courses() {
           <Routes>
             <Route path="Home" element={<Home />} />
             <Route path="Modules" element={<Modules />} />
-            <Route path="Assignments" element={<Assignments />} />
+            <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<PeopleTable />} />
           </Routes>

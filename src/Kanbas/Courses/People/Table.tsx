@@ -1,3 +1,6 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 import { FaUserCircle } from "react-icons/fa";
 
 export default function PeopleTable() {
@@ -16,6 +19,7 @@ export default function PeopleTable() {
         </thead>
         <tbody>
           <tr>
+            
             <td className="wd-full-name text-nowrap">
               <FaUserCircle className="me-2 fs-1 text-secondary" />
               <span className="wd-first-name">Tony</span>{" "}

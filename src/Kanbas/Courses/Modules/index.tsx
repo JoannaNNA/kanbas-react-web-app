@@ -10,6 +10,7 @@ export default function Modules() {
   const modules = db.modules;
   return (
     <div>
+      <ModulesControls/><br /><br /><br /><br />
 
       <ul id="wd-modules" className="list-group rounded-0">
         {modules

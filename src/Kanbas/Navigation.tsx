@@ -2,7 +2,6 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { IoCalendarOutline } from "react-icons/io5";
 import { LiaBookSolid, LiaCogSolid } from "react-icons/lia";
 import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
-import { MdOutlineSettings } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 export default function KanbasNavigation() {
   const { pathname } = useLocation();
@@ -20,14 +19,14 @@ export default function KanbasNavigation() {
     <a id="wd-neu-link" target="_blank" href="https://www.northeastern.edu/"
       className="list-group-item bg-black border-0 text-center">
       <img src="/images/NEU.png" width="75px" alt="Northeastern University Logo" /></a>
-    <Link to="/Kanbas/Account" className={`list-group-item text-center border-0 bg-black
+    <Link to="/Kanbas/Account/Profile" className={`list-group-item text-center border-0 bg-black
           ${pathname.includes("Account") ? "bg-white text-danger" : "bg-black text-white"}`}>
       <FaRegCircleUser className={`fs-1 ${pathname.includes("Account") ? "text-danger" : "text-white"}`} />
       <br />
       Account
     </Link>
     {links.map((link) => (
-      <Link key={link.path} to={link.path} className={`list-group-item bg-black text-center border-0
+      <Link key={link.label} to={link.path} className={`list-group-item bg-black text-center border-0
             ${pathname.includes(link.label) ? "text-danger bg-white" : "text-white bg-black"}`}>
         {link.icon({ className: "fs-1 text-danger"})}
         <br />

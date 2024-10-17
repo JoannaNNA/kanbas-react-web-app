@@ -81,8 +81,17 @@
       "_id": "M201",
       "name": "Fundamentals of Aerodynamics",
       "description": "Basic aerodynamic concepts and fluid dynamics principles.",
-      "course": "RS102"
+      "course": "RS102",
+      "lessons": [
+       { 
+        "_id": "L401",
+        "name":"Basic aerodynamic ",
+        "module":"M201"
+       }
+      ]
+
     },
+
     {
       "_id": "M202",
       "name": "Subsonic and Supersonic Flow",
