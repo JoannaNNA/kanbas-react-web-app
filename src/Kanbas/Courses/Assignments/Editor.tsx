@@ -1,24 +1,19 @@
 import React from 'react';
-import { BsGripVertical } from "react-icons/bs";
-import ModulesControls from "../Modules/ModulesControls";
-import LessonControlButtons from "../Modules/LessonControlButtons";
-import ModuleControlButtons from '../Modules/ModulesControlButtons';
-import { CiSearch } from 'react-icons/ci';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import * as db from "../../Database";
-export default function AssignmentEditor() {
-    const { cid } = useParams();
-  const assignments = db.assignments.filter(assignment => assignment.course === cid);
-    // const assignment = db.assignments.find(assignment => assignment.course === cid && assignment._id === assignmentId);
-    console.log("Course ID (cid):", cid);
-//   console.log("Assignment ID (assignmentId):", assignmentId);
-  console.log("Filtered Assignments:", assignments);
-    return (
-        <div id="wd-assignments-editor" className="container mt-3">
-            {assignments.map((assignment) =>
-            <div key={assignment._id}>
-                console.log("Filtered Assignments:", assignments.id);
 
+export default function AssignmentEditor() {
+    const { aid } = useParams(); // Get assignment ID from URL parameters
+    const assignment = db.assignments.find(assignment => assignment._id === aid); // Find the specific assignment using assignment ID
+
+    // Return early if no assignment is found
+    if (!assignment) {
+        return <div>No assignment found</div>;
+    }
+
+    return (
+        <div id="wd-assignments-editor" className="assignment-container mt-3">
+              <div key={assignment._id}>
                 <div className="mb-4">
                     <label htmlFor="wd-assignments-name" className="form-label">Assignment Name</label>
                     <input id="wd-assignments-nameinput" type="text" className="form-control" value={assignment.title} />
@@ -127,7 +122,7 @@ export default function AssignmentEditor() {
                     <button className="btn btn-success ">Save</button>
                 </div>
             
-            </div> )}
+            </div> 
         </div>
     );
 }

@@ -28,6 +28,9 @@ body {
 .navbar.bg-body-tertiary {
   background-color: #f8f9fa; /* Light background */
 }
+.offcanvasNavbar{
+  color: rgb(245, 11, 11);
+}
 
 
 /* Sidebar for larger screens */
@@ -53,6 +56,7 @@ body {
     display: none !important;
   }
 }
+
 @media (min-width: 768px) {
   /* Navbar styling for large screens */
   .navbar {
@@ -67,10 +71,14 @@ body {
     padding-left: 15px;
     padding-right: 15px;
   }
+  .navbar-brand-black {
+    display: none !important;
+  }
   .navbar-brand {
     margin-right: auto;
     padding-left: 15px;
   }
+
 
 }
 /* Sidebar Fixed Position */
@@ -99,16 +107,19 @@ body {
     color: rgb(238, 234, 234);
   
   }
+  .navbar-brand-white{
+    display: none !important;
+  }
   .dropdown-menu{
     /* color no change */
-    color: rgb(14, 6, 6) !important;
+    color: rgb(248, 243, 243) !important;
     background-color: rgb(12, 11, 11) !important;
   }
  
  
   /* Toggler button styles */
   .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(244, 238, 238, 0.1);
   }
 
   .navbar-brand {
@@ -124,6 +135,8 @@ body {
   /* Offcanvas background */
   .offcanvas {
     background-color: white !important;
+    color: rgb(241, 9, 9);
+
   }
 
   /* Dropdown styles */
@@ -140,6 +153,7 @@ body {
   .btn-close-white {
     filter: invert(1);
   }
+  
 }
 
 
@@ -188,7 +202,9 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
-
+.assignment-container {
+  margin-right: 20px; 
+}
 /* Input container with icon */
 .search-container {
   position: relative;
