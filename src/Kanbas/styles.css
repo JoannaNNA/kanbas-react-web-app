@@ -14,9 +14,12 @@ body {
   left: 0;
   right: 0;
 }
+.nav-item {
+  display: block;
+}
 
 .navbar-nav .nav-link {
-  color: rgb(23, 14, 14) !important;
+  color: rgb(16, 15, 15) !important;
 }
 /* Navbar styles for larger screens (default) */
 .navbar.bg-body-tertiary {
@@ -24,12 +27,19 @@ body {
 }
 
 
+
+.navbar .navbar-brand, 
+.navbar .nav-link {
+  color: black; /* Default black text for larger screens */
+}
+
 /* Sidebar for larger screens */
 @media (min-width: 900px) {
   .wd-main-content-offset {
     padding-left: 140px !important; /* Ensures content shifts to the right when sidebar is visible */
   }
 }
+
 @media (max-width: 1200px) {
   #wd-course-status {
     display: none !important;
@@ -41,7 +51,7 @@ body {
 /* /* }  */
 
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   #wd-courses-navigation,
   #wd-kanbas-navigation {
     display: none !important;
@@ -50,13 +60,12 @@ body {
 @media (min-width: 768px) {
   /* Navbar styling for large screens */
   .navbar {
-  
-    margin-left: 140px; /* Same as the sidebar width */
+    margin-left: 120px; /* Same as the sidebar width */
     display: flex;
     top: 0;
     position: fixed;
-    z-index: 1030; /* Ensure it stays below the sidebar */
-    background-color: #f8f9fa; /* Light background color */
+    z-index: 30; /* Ensure it stays below the sidebar */
+    background-color: #224970; /* Light background color */
     height: 50px; /* Set a consistent height */
     padding-left: 15px;
     padding-right: 15px;
@@ -85,20 +94,21 @@ body {
 @media (max-width: 768px) {
   .navbar {
     display: flex;
-    background-color: black !important;
-    width: calc(100%); 
+    background-color: rgb(6, 0, 0) !important;
+    width: 100%; 
     top: 0;
     position: fixed;
-    z-index: 1030;
-    color: rgb(238, 234, 234);
-  
+    z-index: 10;
+    color: rgb(252, 248, 248);
+
   }
+
   .dropdown-menu{
     /* color no change */
     color: rgb(14, 6, 6) !important;
     background-color: rgb(12, 11, 11) !important;
   }
- 
+
  
   /* Toggler button styles */
   .navbar-toggler {
@@ -112,9 +122,9 @@ body {
     flex-grow: 0; /* Prevent .navbar-brand from growing and pushing content */
   }
   /* Navbar brand and link styles for smaller screens */
-   
 
- 
+
+
   /* Offcanvas background */
   .offcanvas {
     background-color: white !important;
@@ -148,16 +158,16 @@ body {
 
 /* Sidebar Active Link Style */
 .list-group.wd > .list-group-item.active {
-  color: rgb(27, 11, 11); 
+  color: rgb(27, 25, 25); 
   background-color: rgb(250, 246, 246);
   border-left: 3px solid rgb(15, 15, 15) !important;
 }
-
+ */
 .btn-secondary {
   --bs-btn-color: #000 !important;
   --bs-btn-bg: #c7cdd1 !important;
   --bs-btn-border-color: #c7cdd1 !important;
-  --bs-btn-hover-color: #edafaf !important; 
+  --bs-btn-hover-color: #ba6767 !important; 
 }
 
 /* Background for secondary elements */
@@ -242,6 +252,6 @@ body {
   width: 100%;
   max-width: 100%; /* Ensures the module takes up available width */
   min-width: fit-content; 
- 
-  
+
+
 }
