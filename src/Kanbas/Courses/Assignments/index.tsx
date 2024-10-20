@@ -10,7 +10,10 @@ import LessonControlButtons from "../Modules/LessonControlButtons";
 export default function Assignments() {
   const { cid } = useParams();
   const assignments = db.assignments.filter(assignment => assignment.course === cid);
-
+  console.log("Course ID (cid):", cid);
+//   console.log("Assignment ID (assignmentId):", assignmentId);
+  console.log("Filtered Assignments:", assignments);
+ 
   return (
     <div>
     <AssignmentsControls /><br /><br /><br />
