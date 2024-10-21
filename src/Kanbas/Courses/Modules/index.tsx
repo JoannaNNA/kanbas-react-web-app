@@ -9,10 +9,10 @@ export default function Modules() {
   const { cid } = useParams();
   const modules = db.modules;
   return (
-    <div>
+    <div id="wd-modules"  style={{ marginTop: '3rem' }} >
       <ModulesControls/><br /><br /><br /><br />
 
-      <ul id="wd-modules" className="list-group rounded-0">
+      <ul id="wd-modules-body" className="list-group rounded-0">
         {modules
           .filter((module: any) => module.course === cid)
           .map((module: any) => (

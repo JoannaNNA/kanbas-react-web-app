@@ -53,6 +53,15 @@ const LandingPage: React.FC = () => {
           </a>
         </li>
 
+        <li>
+          <a 
+            href="https://github.com/JoannaNNA/kanbas-react-web-app/tree/A3"
+            id="wd-a2"    
+           >
+             Assignments 3 Source Code
+          </a>
+        </li>
+
       </ul>
     </div>
   );
