@@ -39,7 +39,7 @@ export default function Courses() {
                 <span className="navbar-toggler-icon"></span>
               </button>
               <a className="navbar-brand" href="#">
-              <h2 className="navbar-brand-white text-danger text-start align-items-center">
+              <h2 className="navbar-brand-white text-danger text-start ">
                 <FaAlignJustify className="me-4 fs-4 mb-1" />
                 {course && course.name} &gt; {pathname.split("/")[4]}
               </h2>
