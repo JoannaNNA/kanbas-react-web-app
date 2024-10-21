@@ -73,6 +73,7 @@ body {
   }
   .navbar-brand-black {
     display: none !important;
+    
   }
   .navbar-brand {
     margin-right: auto;
