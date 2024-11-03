@@ -20,6 +20,7 @@ body {
   color: rgb(27, 11, 11);
   background-color:white;
   border-left: 3px solid rgb(15, 15, 15) !important;
+  
 }
 .navbar-nav .nav-link {
   color: rgb(23, 14, 14) !important;
@@ -60,7 +61,6 @@ body {
 @media (min-width: 768px) {
   /* Navbar styling for large screens */
   .navbar {
-  
     margin-left: 140px; /* Same as the sidebar width */
     display: flex;
     top: 0;
@@ -186,7 +186,11 @@ body {
   --bs-list-group-border-color: rgb(191, 182, 182);
   border-left: 3px solid green;
 }
+.list-group-item-todo{
+  --bs-list-group-border-color: rgb(191, 182, 182);
+  display: flex;
 
+}
 /* Input field customization */
 .custom-input-size {
   height: 40px;

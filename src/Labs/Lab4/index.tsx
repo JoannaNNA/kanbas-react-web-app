@@ -1,5 +1,15 @@
+import ArrayStateVariable from "./ArrayStateVariable";
+import BooleanStateVariables from "./BooleanStateVariables";
+import ChildStateComponent from "./ChildStateComponent";
 import ClickEvent from "./ClickEvent";
+import Counter from "./Counter";
+import DateStateVariable from "./DateStateVariable";
+import EventObject from "./EventObject";
+import ObjectStateVariable from "./ObjectStateVariable";
+import ParentStateComponent from "./ParentStateComponent";
 import PassingFunctions from "./PassingFunctions";
+import StringStateVariables from "./StringStateVariables";
+import ReduxExamples from "./ReduxExamples";
 
 export default function Lab4() {
     function sayHello() {
@@ -11,7 +21,16 @@ export default function Lab4() {
         <h2>Lab 4</h2>
         <ClickEvent/>
         <PassingFunctions theFunction={sayHello} />
-        
+        <EventObject/>
+        <Counter/>
+        <BooleanStateVariables/>
+        <StringStateVariables/>
+        <DateStateVariable/>
+        <ObjectStateVariable/>
+        <ArrayStateVariable/>
+        {/* <ChildStateComponent/> */}
+        <ParentStateComponent/>
+        <ReduxExamples/>
         
     
     
