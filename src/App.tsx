@@ -9,9 +9,11 @@ import Lab3 from "./Labs/Lab3";
 import Inbox from "./Kanbas/Inbox";
 import Courses from "./Kanbas/Courses";
 import Modules from "./Kanbas/Courses/Modules";
-export default function App() {
+import store from "./Kanbas/store";
+import { Provider } from "react-redux";export default function App() {
  return (
   <HashRouter>
+     <Provider store={store}>
    <div>
     <Routes>
       {/* Redirect root to the landing page */}
@@ -23,6 +25,7 @@ export default function App() {
 
     </Routes>
    </div>
+   </Provider>
   </HashRouter>
 );
 }

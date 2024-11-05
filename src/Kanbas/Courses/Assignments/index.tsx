@@ -1,4 +1,4 @@
-import { BsGripVertical } from "react-icons/bs";
+import { BsGripVertical, BsPlus } from "react-icons/bs";
 import { MdEditDocument } from "react-icons/md";
 import React from 'react';
 import { useParams } from "react-router";
@@ -6,6 +6,8 @@ import * as db from "../../Database";
 import AssignmentsControls from "./AssignmentsControls";
 import ModuleControlButtons from '../Modules/ModulesControlButtons';
 import LessonControlButtons from "../Modules/LessonControlButtons";
+import GreenCheckmark from "../Modules/GreenCheckmark";
+import { IoEllipsisVertical } from "react-icons/io5";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -27,7 +29,12 @@ export default function Assignments() {
         <p className="mb-0 me-3 bg-light p-2 rounded" style={{ maxWidth: '120px', whiteSpace: 'nowrap' }}>
           40% of Total
         </p>
-        <ModuleControlButtons />
+        <div className="float-end">
+            <GreenCheckmark />
+            <BsPlus className="fs-4" /> {/* Adding the BsPlus icon */}
+            <IoEllipsisVertical className="fs-4" />
+        </div>
+
       </div>
     </div>
     <ul id="wd-assignments-title" className="wd list-group rounded-0">
