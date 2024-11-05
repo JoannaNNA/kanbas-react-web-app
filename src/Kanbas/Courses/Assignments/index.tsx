@@ -1,6 +1,6 @@
 import { BsGripVertical, BsPlus } from "react-icons/bs";
 import { MdEditDocument } from "react-icons/md";
-import React from 'react';
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import * as db from "../../Database";
 import AssignmentsControls from "./AssignmentsControls";
@@ -8,17 +8,25 @@ import ModuleControlButtons from '../Modules/ModulesControlButtons';
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { IoEllipsisVertical } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { addAssignment } from "./reducer";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments.filter(assignment => assignment.course === cid);
+  const dispatch = useDispatch();
+  // const assignments = db.assignments.filter(assignment => assignment.course === cid);
+  const [assignmentName, setAssignmentName] = useState('');
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   console.log("Course ID (cid):", cid);
 //   console.log("Assignment ID (assignmentId):", assignmentId);
   console.log("Filtered Assignments:", assignments);
  
   return (
     <div>
-    <AssignmentsControls /><br /><br /><br />
+    <AssignmentsControls setAssignmentName={setAssignmentName} assignmentName={assignmentName} addAssignment={() => {
+          dispatch(addAssignment({ name: assignmentName, course: cid }));
+          setAssignmentName("");}} 
+          /><br /><br /><br />
     <div className="wd-assignments p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
       <h3 className="m-0 d-flex align-items-center">
         <BsGripVertical className="me-2 fs-3" />

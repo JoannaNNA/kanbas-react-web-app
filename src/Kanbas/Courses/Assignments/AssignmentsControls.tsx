@@ -2,8 +2,11 @@ import { FaPlus, FaChartLine, FaCompress } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import NewAssignmentEditor from "./NewAssignmentEditor";
 
-export default function AssignmentsControls() {
+export default function AssignmentsControls({ assignmentName, setAssignmentName, addAssignment }:
+  { assignmentName: string; setAssignmentName: (title: string) => void; addAssignment: () => void; }) 
+  {
   return (
     
     <div id="wd-assignments-controls" className="container">
@@ -28,10 +31,13 @@ export default function AssignmentsControls() {
       <button id="wd-Group-btn" className="btn btn-secondary ms-2">
           <FaPlus className="me-2" />Group
         </button>
-        <button id="wd-add-assignment-btn" className="btn btn-danger ms-2">
+        <button id="wd-add-assignment-btn" className="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#wd-add-module-dialog" >
+          
           <FaPlus className="me-2" />Assignment
         </button>
-      
+        <NewAssignmentEditor dialogTitle="Add Module" assignmentName={assignmentName}
+                    setAssignmentName={setAssignmentName} addAssignment={addAssignment} />
+
       </div>
     </div>
   </div>

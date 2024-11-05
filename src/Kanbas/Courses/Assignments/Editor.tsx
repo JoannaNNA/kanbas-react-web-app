@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import * as db from "../../Database";
 
 export default function AssignmentEditor() {
-    
     const { aid } = useParams(); // Get assignment ID from URL parameters
     const assignment = db.assignments.find(assignment => assignment._id === aid); // Find the specific assignment using assignment ID
 
@@ -12,15 +11,9 @@ export default function AssignmentEditor() {
     const toggleEditMode = () => {
         setIsEditing(!isEditing); // Toggle the editing state
     };
-
     if (!assignment) {
         return <div>No assignment found</div>; // Early return if no assignment found
     }
-
-    
-
-
-
     return (
         <div id="wd-assignments-editor" className="assignment-container mt-3">
               <div key={assignment._id}>
