@@ -19,7 +19,7 @@ export default function Signup() {
             to="/Kanbas/Account/Profile"
             className="btn btn-primary w-100">
             Sign up</Link>
-      <Link id="wd-signup-link" to="/Kanbas/Account/Signin">Sign in</Link>
+      <Link id="wd-signin-link" to="/Kanbas/Account/Signin">Sign in</Link>
     </div>
     
     

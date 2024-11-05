@@ -1,14 +1,17 @@
 import { link } from "fs";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function AccountNavigation() {
   const { cid } = useParams();
   const { pathname } = useLocation();
-  const links = [
-    { path: "/Kanbas/Account/Signin", label: "Signin" },
-    { path: "/Kanbas/Account/Signup", label: "Signup" },
-    { path: "/Kanbas/Account/Profile", label: "Profile" }
-  ];
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const links = currentUser
+  ? [{ path: "/Kanbas/Account/Profile", label: "Profile" }]
+  : [
+      { path: "/Kanbas/Account/Signin", label: "Signin" },
+      { path: "/Kanbas/Account/Signup", label: "Signup" }
+    ];
   
   return (
     <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0" style={{width: "280px"}}>
