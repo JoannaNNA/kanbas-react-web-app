@@ -8,7 +8,6 @@ export default function AssignmentsControls({ assignmentName, setAssignmentName,
   { assignmentName: string; setAssignmentName: (title: string) => void; addAssignment: () => void; }) 
   {
   return (
-    
     <div id="wd-assignments-controls" className="container">
     <div className="row align-items-center">
       <div className="col-sm-8 col-md-6">
@@ -21,23 +20,18 @@ export default function AssignmentsControls({ assignmentName, setAssignmentName,
             type="text"
             className="form-control"
             placeholder="Search..."
-          
-            
           />
         </div>
       </div>
-      
       <div className="col-sm-4 col-md-6 text-end">
       <button id="wd-Group-btn" className="btn btn-secondary ms-2">
           <FaPlus className="me-2" />Group
         </button>
-        <button id="wd-add-assignment-btn" className="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#wd-add-module-dialog" >
-          
+        <button id="wd-add-assignment-btn" className="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#wd-add-assignment-dialog">
           <FaPlus className="me-2" />Assignment
         </button>
-        <NewAssignmentEditor dialogTitle="Add Module" assignmentName={assignmentName}
+        <NewAssignmentEditor dialogTitle="Add Assignment" assignmentName={assignmentName}
                     setAssignmentName={setAssignmentName} addAssignment={addAssignment} />
-
       </div>
     </div>
   </div>

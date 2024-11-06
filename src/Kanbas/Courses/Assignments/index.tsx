@@ -4,29 +4,57 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import * as db from "../../Database";
 import AssignmentsControls from "./AssignmentsControls";
-import ModuleControlButtons from '../Modules/ModulesControlButtons';
 import LessonControlButtons from "../Modules/LessonControlButtons";
-import GreenCheckmark from "../Modules/GreenCheckmark";
-import { IoEllipsisVertical } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { addAssignment } from "./reducer";
+import { addAssignment, deleteAssignment, updateAssignment } from "./reducer";
+import AssignmentControlButtons from "./AssignmentCoutrolButtons";
+import { IoEllipsisVertical } from "react-icons/io5";
+import GreenCheckmark from "../Modules/GreenCheckmark";
+import { title } from "process";
+
+interface Assignment {
+  _id: string;
+  title: string;
+  start_date?: string;
+  due_date?: string;
+  points?: number;
+  course?: string;
+}
 
 export default function Assignments() {
   const { cid } = useParams();
   const dispatch = useDispatch();
-  // const assignments = db.assignments.filter(assignment => assignment.course === cid);
   const [assignmentName, setAssignmentName] = useState('');
+  const [editingId, setEditingId] = useState<string | null>(null);
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   console.log("Course ID (cid):", cid);
 //   console.log("Assignment ID (assignmentId):", assignmentId);
   console.log("Filtered Assignments:", assignments);
  
+  const handleEdit = (assignment: Assignment) => {
+    setEditingId(assignment._id);
+    setAssignmentName(assignment.title);
+  };
+
+  const handleUpdate = () => {
+    if (editingId) {
+      dispatch(updateAssignment({
+        _id: editingId,
+        title: assignmentName,
+        course: cid
+      }));
+      setEditingId(null);
+      setAssignmentName('');
+    }
+  };
+
   return (
     <div>
+      <br />
     <AssignmentsControls setAssignmentName={setAssignmentName} assignmentName={assignmentName} addAssignment={() => {
-          dispatch(addAssignment({ name: assignmentName, course: cid }));
+          dispatch(addAssignment({ title: assignmentName, course: cid }));
           setAssignmentName("");}} 
-          /><br /><br /><br />
+          /><br /><br />
     <div className="wd-assignments p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
       <h3 className="m-0 d-flex align-items-center">
         <BsGripVertical className="me-2 fs-3" />
@@ -38,32 +66,52 @@ export default function Assignments() {
           40% of Total
         </p>
         <div className="float-end">
-            <GreenCheckmark />
-            <BsPlus className="fs-4" /> {/* Adding the BsPlus icon */}
-            <IoEllipsisVertical className="fs-4" />
+          <GreenCheckmark />
+          <BsPlus className="fs-1" />
+          <IoEllipsisVertical className="fs-4" />
         </div>
 
       </div>
     </div>
     <ul id="wd-assignments-title" className="wd list-group rounded-0">
-      {assignments.map((assignment) => (
-       <li key={assignment._id} className="wd-assignment list-group-item p-0  fs-5">       
+      {assignments.map((assignment: Assignment) => (
+        <li key={assignment._id} className="wd-assignment list-group-item p-0 fs-5">
           <div className="wd-task p-3 ps-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-              <BsGripVertical className="me-2 fs-3" />
-              <MdEditDocument />
-              <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-                <a className="wd-assignment-link" href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`} style={{ margin: '0 1rem' }}>
-                  {assignment.title}
-                </a>
-                <p style={{ margin: '0 1rem', color: 'black', fontSize: '0.9em' }}>
-                  <span style={{ color: 'red' }}>Multiple Modules</span> | 
-                  {assignment.start_date && <strong> NOT available until {assignment.start_date}</strong>} |
-                  {assignment.due_date && <strong> Due {assignment.due_date}</strong>} | {assignment.points} Points
-                </p> 
+            {editingId === assignment._id ? (
+              <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                <input 
+                  className="form-control w-50 d-inline-block"
+                  value={assignmentName}
+                  onChange={(e) => setAssignmentName(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleUpdate();
+                    }
+                  }}
+                  autoFocus
+                />
               </div>
-            </div>
-            <LessonControlButtons />
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                <BsGripVertical className="me-2 fs-3" />
+                <MdEditDocument />
+                <div style={{ margin: '0 1rem',display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <a className="wd-assignment-link" href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}>
+                    {assignment.title || assignment.title}
+                  </a>
+                  <p style={{ color: 'black', fontSize: '0.9em' }}>
+                    <span style={{ color: 'red' }}>Multiple Modules</span> | 
+                    {assignment.start_date && <strong> NOT available until {assignment.start_date}</strong>} |
+                    {assignment.due_date && <strong> Due {assignment.due_date}</strong>} | {assignment.points} Points
+                  </p> 
+                </div>
+              </div>
+            )}
+            <AssignmentControlButtons 
+              assignmentId={assignment._id} 
+              onEdit={() => handleEdit(assignment)}
+              deleteAssignment={() => dispatch(deleteAssignment(assignment._id))}
+            />
           </div>
         </li>
       ))}

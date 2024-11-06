@@ -1,7 +1,7 @@
 export default function NewAssignmentEditor({ dialogTitle, assignmentName, setAssignmentName, addAssignment }:
     { dialogTitle: string;  assignmentName: string; setAssignmentName: (name: string) => void; addAssignment: () => void; }) {
       return (
-        <div id="wd-add-assignmente-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div id="wd-add-assignment-dialog" className="modal fade" data-bs-backdrop="static" data-bs-keyboard="false">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
