@@ -11,6 +11,7 @@ import AssignmentControlButtons from "./AssignmentCoutrolButtons";
 import { IoEllipsisVertical } from "react-icons/io5";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { title } from "process";
+import { Modal, Button } from "react-bootstrap";
 
 interface Assignment {
   _id: string;
@@ -27,6 +28,8 @@ export default function Assignments() {
   const [assignmentName, setAssignmentName] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [assignmentToDelete, setAssignmentToDelete] = useState<string | null>(null);
   console.log("Course ID (cid):", cid);
 //   console.log("Assignment ID (assignmentId):", assignmentId);
   console.log("Filtered Assignments:", assignments);
@@ -48,13 +51,38 @@ export default function Assignments() {
     }
   };
 
+  const handleDeleteClick = (assignmentId: string) => {
+    setAssignmentToDelete(assignmentId);
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (assignmentToDelete) {
+      dispatch(deleteAssignment(assignmentToDelete));
+      setShowDeleteModal(false);
+      setAssignmentToDelete(null);
+    }
+  };
+
   return (
     <div>
       <br />
-    <AssignmentsControls setAssignmentName={setAssignmentName} assignmentName={assignmentName} addAssignment={() => {
-          dispatch(addAssignment({ title: assignmentName, course: cid }));
-          setAssignmentName("");}} 
-          /><br /><br />
+    <AssignmentsControls 
+      setAssignmentName={setAssignmentName} 
+      assignmentName={assignmentName} 
+      addAssignment={(assignment: any) => {
+        dispatch(addAssignment({ 
+          title: assignment.name,
+          description: assignment.description,
+          points: assignment.points,
+          start_date: assignment.start_date,
+          due_date: assignment.due_date,
+          end_date: assignment.end_date,
+          course: cid 
+        }));
+      }} 
+    />
+    <br /><br />
     <div className="wd-assignments p-3 ps-2 bg-secondary d-flex justify-content-between align-items-center">
       <h3 className="m-0 d-flex align-items-center">
         <BsGripVertical className="me-2 fs-3" />
@@ -110,12 +138,29 @@ export default function Assignments() {
             <AssignmentControlButtons 
               assignmentId={assignment._id} 
               onEdit={() => handleEdit(assignment)}
-              deleteAssignment={() => dispatch(deleteAssignment(assignment._id))}
+              deleteAssignment={() => handleDeleteClick(assignment._id)}
             />
           </div>
         </li>
       ))}
     </ul>
+
+    <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>Confirm Delete</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Are you sure you want to delete this assignment?
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+          Cancel
+        </Button>
+        <Button variant="danger" onClick={handleConfirmDelete}>
+          Delete
+        </Button>
+      </Modal.Footer>
+    </Modal>
   </div>
 );
 }

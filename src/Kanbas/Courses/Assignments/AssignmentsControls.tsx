@@ -3,10 +3,13 @@ import { CiSearch } from "react-icons/ci";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import NewAssignmentEditor from "./NewAssignmentEditor";
+import { useNavigate } from 'react-router-dom';
 
 export default function AssignmentsControls({ assignmentName, setAssignmentName, addAssignment }:
-  { assignmentName: string; setAssignmentName: (title: string) => void; addAssignment: () => void; }) 
+  { assignmentName: string; setAssignmentName: (title: string) => void; addAssignment: (assignment: any) => void; }) 
   {
+  const navigate = useNavigate();
+
   return (
     <div id="wd-assignments-controls" className="container">
     <div className="row align-items-center">
@@ -31,7 +34,7 @@ export default function AssignmentsControls({ assignmentName, setAssignmentName,
           <FaPlus className="me-2" />Assignment
         </button>
         <NewAssignmentEditor dialogTitle="Add Assignment" assignmentName={assignmentName}
-                    setAssignmentName={setAssignmentName} addAssignment={addAssignment} />
+                    setAssignmentName={setAssignmentName} addAssignment={addAssignment} navigate={navigate} />
       </div>
     </div>
   </div>
