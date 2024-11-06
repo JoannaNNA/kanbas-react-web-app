@@ -2,7 +2,7 @@ import { MdEditDocument } from "react-icons/md";
 import { Link } from "react-router-dom";
 import * as db from "./Database"
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Dashboard(
   { courses, course, setCourse, addNewCourse,
@@ -11,12 +11,53 @@ export default function Dashboard(
     addNewCourse: () => void; deleteCourse: (course: any) => void;
     updateCourse: () => void; })
    {
+    const [showAllCourses, setShowAllCourses] = useState(false);
     const { currentUser } = useSelector((state: any) => state.accountReducer);
-    const { enrollments } = db;
+    const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
+    const dispatch = useDispatch();
+  
+    const isEnrolled = (courseId: string) => {
+      return enrollments.some(
+        (enrollment: any) =>
+          enrollment.user === currentUser._id &&
+          enrollment.course === courseId
+      );
+    };
+
+    const handleEnroll = (courseId: string) => {
+      dispatch({
+        type: "enroll",
+        enrollment: {
+          user: currentUser._id,
+          course: courseId,
+        },
+      });
+    };
+
+    const handleUnenroll = (courseId: string) => {
+      dispatch({
+        type: "unenroll",
+        enrollment: {
+          user: currentUser._id,
+          course: courseId,
+        },
+      });
+    };
   
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      <div className="d-flex justify-content-between align-items-center">
+        <h1>Dashboard</h1>
+        {currentUser.role === 'STUDENT' && (
+          <button 
+            className="btn btn-primary"
+            onClick={() => setShowAllCourses(!showAllCourses)}
+          >
+            {showAllCourses ? 'Show My Enrollments' : 'Show All Courses'}
+          </button>
+        )}
+      </div>
+      <hr />
       <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
       <h5>New Course
           <button className="btn btn-primary float-end"
@@ -32,164 +73,75 @@ export default function Dashboard(
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
           {courses
-            .filter((course) =>
-              enrollments.some(
-                (enrollment) =>
-                  enrollment.user === currentUser._id &&
-                  enrollment.course === course._id
-                 ))        
-          .map((course) => (
-            <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-              <div className="card rounded-3 overflow-hidden">
-                <Link to={`/Kanbas/Courses/${course._id}/Home`}
-                      className="wd-dashboard-course-link text-decoration-none text-dark" >
-                  <img src={course.image} alt={`Image for ${course.name}`} width="100%" height={160} />
-                  <div className="card-body">
-                    <h5 className="wd-dashboard-course-title card-title">
-                      {course.name} </h5>
-                    <p className="wd-dashboard-course-title card-text overflow-y-hidden" style={{ maxHeight: 100 }}>
-                      {course.description} </p>
+            .filter((course) => {
+              if (currentUser.role !== 'STUDENT') {
+                return isEnrolled(course._id);
+              }
+              return showAllCourses ? true : isEnrolled(course._id);
+            })
+            .map((course) => (
+              <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+                <div className="card rounded-3 overflow-hidden">
+                  <Link 
+                    to={`/Kanbas/Courses/${course._id}/Home`}
+                    onClick={(e) => {
+                      if (currentUser.role === 'STUDENT' && !isEnrolled(course._id)) {
+                        e.preventDefault();
+                        alert('You must be enrolled in this course to access it.');
+                      }
+                    }}
+                    className="wd-dashboard-course-link text-decoration-none text-dark"
+                  >
+                    <img src={course.image} alt={`Image for ${course.name}`} width="100%" height={160} />
+                    <div className="card-body">
+                      <h5 className="wd-dashboard-course-title card-title">
+                        {course.name} </h5>
+                      <p className="wd-dashboard-course-title card-text overflow-y-hidden" style={{ maxHeight: 100 }}>
+                        {course.description} </p>
                       <div>
-                        <button className="btn btn-primary">
-                          <MdEditDocument/>
-                        </button>
-                        {/* <Place Delete button before Edit button in the HTML to make it appear on the right when using float-end --> */}
-                        <button onClick={(event) => {
-                          event.preventDefault();
-                          deleteCourse(course._id);
-                        }} className="btn btn-danger float-end"
-                        id="wd-delete-course-click">
-                          Delete
-                        </button>
-                        <button id="wd-edit-course-click"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            setCourse(course);
-                          }}
-                          className="btn btn-warning float-end me-2">
-                          Edit
-                        </button>
+                        {currentUser.role === 'STUDENT' && (
+                          <button
+                            className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              isEnrolled(course._id) 
+                                ? handleUnenroll(course._id)
+                                : handleEnroll(course._id);
+                            }}
+                          >
+                            {isEnrolled(course._id) ? 'Unenroll' : 'Enroll'}
+                          </button>
+                        )}
+                        {currentUser.role === 'FACULTY' && (
+                          <div>
+                            <button className="btn btn-primary">
+                              <MdEditDocument/>
+                            </button>
+                            <button onClick={(event) => {
+                              event.preventDefault();
+                              deleteCourse(course._id);
+                            }} className="btn btn-danger float-end"
+                            id="wd-delete-course-click">
+                              Delete
+                            </button>
+                            <button id="wd-edit-course-click"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setCourse(course);
+                              }}
+                              className="btn btn-warning float-end me-2">
+                              Edit
+                            </button>
+                          </div>
+                        )}
                       </div>
-                  </div>
-                </Link>
+                    </div>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </div>
 );}
 
-
-          // <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-          //   <div className="card rounded-3 overflow-hidden">
-          //       <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-          //             to="/Kanbas/Courses/1234/Home">
-          //         <img src="/images/Python.png" width="100%" height={160}/>
-          //         <div className="card-body">
-          //           <h5 className="wd-dashboard-course-title card-title">
-          //             CS5001 Python
-          //           </h5>
-          //           <p className="wd-dashboard-course-title card-text">
-          //           Python For Beginners
-          //           </p>
-          //           <button className="btn btn-secondary"> <MdEditDocument /> </button>
-          //         </div>
-          //       </Link>
-          //   </div>
-            
-          // </div>
-
-          // <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-          //   <div className="card rounded-3 overflow-hidden">
-          //       <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-          //             to="/Kanbas/Courses/1234/Home">
-          //         <img src="/images/AI.png" width="100%" height={160}/>
-          //         <div className="card-body">
-          //           <h5 className="wd-dashboard-course-title card-title">
-          //             CS5002 AI
-          //           </h5>
-          //           <p className="wd-dashboard-course-title card-text">
-          //             Making AI helpful for everyone
-          //           </p>
-          //           <button className="btn btn-secondary"> <MdEditDocument /> </button>
-          //         </div>
-          //       </Link>
-          //   </div>
-            
-          // </div>
-
-          // <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-          //   <div className="card rounded-3 overflow-hidden">
-          //       <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-          //             to="/Kanbas/Courses/1234/Home">
-          //         <img src="/images/algorithms.png" width="100%" height={160}/>
-          //         <div className="card-body">
-          //           <h5 className="wd-dashboard-course-title card-title">
-          //             CS5003 Algorithms
-          //           </h5>
-          //           <p className="wd-dashboard-course-title card-text">
-          //           Introduction to Algorithms
-          //           </p>
-          //           <button className="btn btn-secondary"> <MdEditDocument /> </button>
-          //         </div>
-          //       </Link>
-          //   </div>
-            
-          // </div>
-          // <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-          //   <div className="card rounded-3 overflow-hidden">
-          //       <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-          //             to="/Kanbas/Courses/1234/Home">
-          //         <img src="/images/C.png" width="100%" height={160}/>
-          //         <div className="card-body">
-          //           <h5 className="wd-dashboard-course-title card-title">
-          //             CS5004 Introduction to C
-          //           </h5>
-          //           <p className="wd-dashboard-course-title card-text">
-          //            Learn C Programming
-          //           </p>
-          //           <button className="btn btn-secondary"> <MdEditDocument /> </button>
-          //         </div>
-          //       </Link>
-          //   </div>
-            
-          // </div>
-
-          // <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-          //   <div className="card rounded-3 overflow-hidden">
-          //       <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-          //             to="/Kanbas/Courses/1234/Home">
-          //         <img src="/images/JAVA.png" width="100%" height={160}/>
-          //         <div className="card-body">
-          //           <h5 className="wd-dashboard-course-title card-title">
-          //             CS5005 JAVA
-          //           </h5>
-          //           <p className="wd-dashboard-course-title card-text">
-          //           Java is a high-level, class-based, object-oriented programming language
-          //           </p>
-          //           <button className="btn btn-secondary"> <MdEditDocument /> </button>
-          //         </div>
-          //       </Link>
-          //   </div>
-            
-          // </div>
-
-          // <div className="wd-dashboard-course col" style={{ width: "300px" }}>
-          //   <div className="card rounded-3 overflow-hidden">
-          //       <Link className="wd-dashboard-course-link text-decoration-none text-dark"
-          //             to="/Kanbas/Courses/1234/Home">
-          //         <img src="/images/JS.png" width="100%" height={160}/>
-          //         <div className="card-body">
-          //           <h5 className="wd-dashboard-course-title card-title">
-          //             CS5006 JavaScript PRO
-          //           </h5>
-          //           <p className="wd-dashboard-course-title card-text">
-          //             JavaScript Introduction
-          //           </p>
-          //           <button className="btn btn-secondary"> <MdEditDocument /> </button>
-          //         </div>
-          //       </Link>
-          //   </div>
-            
-          // </div>
