@@ -29,17 +29,15 @@ export default function NewAssignmentEditor({
       start_date: startDate,
       end_date: endDate
     };
-    console.log('Saving new assignment:', newAssignment);
     addAssignment(newAssignment);
-
-    const modal = document.getElementById('wd-add-assignment-dialog');
+    const modalElement = document.getElementById('wd-add-assignment-dialog');
+    const modal = bootstrap.Modal.getInstance(modalElement as Element);
     if (modal) {
-      const bootstrapModal = bootstrap.Modal.getInstance(modal);
-      if (bootstrapModal) {
-        bootstrapModal.hide();
-      }
+      modal.hide();
+      modalElement?.addEventListener('hidden.bs.modal', () => {
+        navigate('../assignments');
+      }, { once: true });
     }
-    navigate("./");
   };
 
   const handleCancel = () => {

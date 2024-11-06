@@ -72,7 +72,7 @@ export default function Assignments() {
       assignmentName={assignmentName} 
       addAssignment={(assignment: any) => {
         dispatch(addAssignment({ 
-          title: assignment.name,
+          title: assignment.title,
           description: assignment.description,
           points: assignment.points,
           start_date: assignment.start_date,
