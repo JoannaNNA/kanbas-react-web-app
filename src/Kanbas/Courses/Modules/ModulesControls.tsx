@@ -3,18 +3,27 @@ import GreenCheckmark from "./GreenCheckmark";
 import { AiOutlineStop } from "react-icons/ai";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ModuleEditor from "./ModuleEditor";
+import { useSelector } from "react-redux";
+
 export default function ModulesControls({ moduleName, setModuleName, addModule }:
   { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
+  
+ 
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  
   return (
     <div id="wd-modules-controls" className="text-nowrap">
-      <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end" 
-        data-bs-toggle="modal" data-bs-target="#wd-add-module-dialog" >
-        <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
-         Module
-      </button>
+      {/* only FACULTY can see add module button */}
+      {currentUser?.role === 'FACULTY' && (
+        <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end" 
+          data-bs-toggle="modal" data-bs-target="#wd-add-module-dialog" >
+          <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+          Module
+        </button>
+      )}
       
-     
-      <div id="wd-modules-dropdwn"className="modules-dropdown d-inline me-1 float-end">
+      {/* all users can see the following buttons */}
+      <div id="wd-modules-dropdwn" className="modules-dropdown d-inline me-1 float-end">
         <button id="dropdownMenuButton" className="btn btn-lg btn-secondary dropdown-toggle"
           type="button" data-bs-toggle="dropdown">
           <GreenCheckmark />
@@ -48,18 +57,22 @@ export default function ModulesControls({ moduleName, setModuleName, addModule }
         </ul>
       </div>
 
-      
       <button id="wd-view-progress-btn" className="btn btn-lg btn-secondary me-1 float-end">
-       
         View Progress
       </button>
       <button id="wd-collapse-all-btn" className="btn btn-lg btn-secondary me-1 float-end">
-       
         Collapse All
       </button>
-      <ModuleEditor dialogTitle="Add Module" moduleName={moduleName}
-                    setModuleName={setModuleName} addModule={addModule} />
-
+      
+      {/* ModuleEditor dialog is only visible to FACULTY */}
+      {currentUser?.role === 'FACULTY' && (
+        <ModuleEditor 
+          dialogTitle="Add Module" 
+          moduleName={moduleName}
+          setModuleName={setModuleName} 
+          addModule={addModule} 
+        />
+      )}
     </div>
   );
 }

@@ -1,36 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { assignments } from "../../Database";
+
+// 生成新的作业ID
+const generateNewId = () => {
+    const existingIds = assignments
+        .map(a => a._id)
+        .filter(id => id.startsWith('A'))
+        .map(id => parseInt(id.slice(1)));
+    const maxId = Math.max(...existingIds, 0);
+    return `A${(maxId + 1).toString().padStart(3, '0')}`;
+};
+
 const initialState = {
     assignments: assignments,
 };
+
 const assignmentsSlice = createSlice({
-  name: "assignments",
-  initialState,
-  reducers: {
-    addAssignment: (state, { payload: assignment }) => {
-      const newAssignment: any = {
-        _id: new Date().getTime().toString(),
-        ...assignment,
-        course: assignment.course
-      };
-      state.assignments = [...state.assignments, newAssignment];
+    name: "assignments",
+    initialState,
+    reducers: {
+        addAssignment: (state, { payload: assignment }) => {
+            const newAssignment = {
+                _id: generateNewId(),
+                title: assignment.title,
+                description: assignment.description,
+                points: assignment.points,
+                start_date: assignment.start_date,
+                due_date: assignment.due_date,
+                course: assignment.course
+            };
+            state.assignments = [...state.assignments, newAssignment];
+        },
+        deleteAssignment: (state, { payload: assignmentId }) => {
+            state.assignments = state.assignments.filter(
+                (a: any) => a._id !== assignmentId);
+        },
+        updateAssignment: (state, { payload: assignment }) => {
+            state.assignments = state.assignments.map((a: any) =>
+                a._id === assignment._id ? { ...a, ...assignment } : a
+            );
+        },
+        editAssignment: (state, { payload: assignmentId }) => {
+            state.assignments = state.assignments.map((a: any) =>
+                a._id === assignmentId ? { ...a, editing: true } : a
+            );
+        },
     },
-    deleteAssignment: (state, { payload: assignmentId }) => {
-      state.assignments = state.assignments.filter(
-        (a: any) => a._id !== assignmentId);
-    },
-    updateAssignment: (state, { payload: assignment }) => {
-      state.assignments = state.assignments.map((a: any) =>
-        a._id === assignment._id ? { ...a, ...assignment } : a
-      ) as any;
-    },
-    editAssignment: (state, { payload: assignmentId }) => {
-      state.assignments = state.assignments.map((a: any) =>
-        a._id === assignmentId ? { ...a, editing: true } : a
-    ) as any;
-},
-},
 });
+
 export const { addAssignment, deleteAssignment, updateAssignment, editAssignment} =
 assignmentsSlice.actions;
 export default assignmentsSlice.reducer;

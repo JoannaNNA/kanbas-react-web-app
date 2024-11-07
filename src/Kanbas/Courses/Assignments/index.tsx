@@ -102,47 +102,50 @@ export default function Assignments() {
       </div>
     </div>
     <ul id="wd-assignments-title" className="wd list-group rounded-0">
-      {assignments.map((assignment: Assignment) => (
-        <li key={assignment._id} className="wd-assignment list-group-item p-0 fs-5">
-          <div className="wd-task p-3 ps-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            {editingId === assignment._id ? (
-              <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-                <input 
-                  className="form-control w-50 d-inline-block"
-                  value={assignmentName}
-                  onChange={(e) => setAssignmentName(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleUpdate();
-                    }
-                  }}
-                  autoFocus
-                />
-              </div>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-                <BsGripVertical className="me-2 fs-3" />
-                <MdEditDocument />
-                <div style={{ margin: '0 1rem',display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <a className="wd-assignment-link" href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}>
-                    {assignment.title || assignment.title}
-                  </a>
-                  <p style={{ color: 'black', fontSize: '0.9em' }}>
-                    <span style={{ color: 'red' }}>Multiple Modules</span> | 
-                    {assignment.start_date && <strong> NOT available until {assignment.start_date}</strong>} |
-                    {assignment.due_date && <strong> Due {assignment.due_date}</strong>} | {assignment.points} Points
-                  </p> 
+      {assignments
+        .filter((assignment: Assignment) => assignment.course === cid)
+        .map((assignment: Assignment) => (
+          <li key={assignment._id} className="wd-assignment list-group-item p-0 fs-5">
+            <div className="wd-task p-3 ps-1" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              {editingId === assignment._id ? (
+                <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                  <input 
+                    className="form-control w-50 d-inline-block"
+                    value={assignmentName}
+                    onChange={(e) => setAssignmentName(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleUpdate();
+                      }
+                    }}
+                    autoFocus
+                  />
                 </div>
-              </div>
-            )}
-            <AssignmentControlButtons 
-              assignmentId={assignment._id} 
-              onEdit={() => handleEdit(assignment)}
-              deleteAssignment={() => handleDeleteClick(assignment._id)}
-            />
-          </div>
-        </li>
-      ))}
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+                  <BsGripVertical className="me-2 fs-3" />
+                  <MdEditDocument />
+                  <div style={{ margin: '0 1rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    <a className="wd-assignment-link" href={`#/Kanbas/Courses/${cid}/Assignments/${assignment._id}`}>
+                      {assignment.title}
+                    </a>
+                    <p style={{ color: 'black', fontSize: '0.9em' }}>
+                      <span style={{ color: 'red' }}>Multiple Modules</span> | 
+                      {assignment.start_date && <strong> NOT available until {assignment.start_date}</strong>} |
+                      {assignment.due_date && <strong> Due {assignment.due_date}</strong>} | 
+                      {assignment.points} Points
+                    </p> 
+                  </div>
+                </div>
+              )}
+              <AssignmentControlButtons 
+                assignmentId={assignment._id} 
+                onEdit={() => handleEdit(assignment)}
+                deleteAssignment={() => handleDeleteClick(assignment._id)}
+              />
+            </div>
+          </li>
+        ))}
     </ul>
 
     <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>

@@ -9,6 +9,7 @@ const store = configureStore({
     accountReducer,
     assignmentsReducer,
     enrollmentReducer,
+    
   },
 });
 export default store;
