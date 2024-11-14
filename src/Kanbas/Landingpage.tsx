@@ -17,6 +17,7 @@ const LandingPage: React.FC = () => {
         <li><Link to="/Labs/Lab2">Lab 2</Link></li>
         <li><Link to="/Labs/Lab3">Lab 3</Link></li>
         <li><Link to="/Labs/Lab4">Lab 4</Link></li>
+        <li><Link to="/Labs/Lab5">Lab 5</Link></li>
       </ul>
 
       {/* Link to Kanbas Application */}
@@ -68,6 +69,14 @@ const LandingPage: React.FC = () => {
             id="wd-a2"    
            >
              Assignments 4 Source Code
+          </a>
+        </li>
+        <li>
+          <a 
+            href="https://github.com/JoannaNNA/kanbas-react-web-app/tree/A5"
+            id="wd-a2"    
+           >
+             Assignments 5 Source Code
           </a>
         </li>
 
