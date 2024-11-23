@@ -5,7 +5,7 @@ import Courses from "./Courses";
 import KanbasNavigation from "./Navigation";
 import "./styles.css";
 import * as db from "./Database";
-
+import Session from "./Account/Session";
 import { useState } from "react";
 import ProtectedRoute from "./Account/ProtectedRoute";
 
@@ -33,6 +33,7 @@ export default function Kanbas() {
     );
   };
   return (
+    <Session>
     <div id="wd-kanbas">
     <KanbasNavigation />
       <div className="wd-main-content-offset p-3">
@@ -55,6 +56,6 @@ export default function Kanbas() {
           
         </div>
       </div>
-    
+    </Session>
   );
 }
