@@ -11,7 +11,7 @@ import ProtectedRoute from "./Account/ProtectedRoute";
 import * as client from "./Courses/client";
 import * as userClient from "./Account/client";
 import { useSelector } from "react-redux";
-
+import * as courseClient from "./Courses/client";
 export default function Kanbas() {
   const [courses, setCourses] = useState<any[]>([]);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -35,12 +35,13 @@ export default function Kanbas() {
     const newCourse = await userClient.createCourse(course);
     setCourses([...courses, newCourse]);
   };
-  const deleteCourse = (courseId: any) => {
+  const deleteCourse = async(courseId: any) => {
+    const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
-  const updateCourse = () => {
-    setCourses(
-      courses.map((c) => {
+  const updateCourse = async() => {
+    await courseClient.updateCourse(course);
+    setCourses( courses.map((c) => {
         if (c._id === course._id) {
           return course;
         } else {
