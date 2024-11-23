@@ -6,11 +6,27 @@ import KanbasNavigation from "./Navigation";
 import "./styles.css";
 import * as db from "./Database";
 import Session from "./Account/Session";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProtectedRoute from "./Account/ProtectedRoute";
+import * as client from "./Courses/client";
+import * as userClient from "./Account/client";
+import { useSelector } from "react-redux";
 
 export default function Kanbas() {
-  const [courses, setCourses] = useState<any[]>(db.courses);
+  const [courses, setCourses] = useState<any[]>([]);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const fetchCourses = async () => {
+    try {
+      const courses = await userClient.findMyCourses();
+      setCourses(courses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, [currentUser]);
+
   const [course, setCourse] = useState<any>({
     _id: "1234", name: "New Course", number: "New Number",
     startDate: "2023-09-10", endDate: "2023-12-15",image: "/images/reactjs.jpg", description: "New Description",
