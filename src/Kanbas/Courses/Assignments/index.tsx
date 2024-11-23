@@ -1,8 +1,8 @@
 import { BsGripVertical, BsPlus } from "react-icons/bs";
 import { MdEditDocument } from "react-icons/md";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import * as db from "../../Database";
+import * as client from "./client";
 import AssignmentsControls from "./AssignmentsControls";
 import LessonControlButtons from "../Modules/LessonControlButtons";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,27 +27,35 @@ export default function Assignments() {
   const dispatch = useDispatch();
   const [assignmentName, setAssignmentName] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
-  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const [assignments, setAssignments] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [assignmentToDelete, setAssignmentToDelete] = useState<string | null>(null);
-  console.log("Course ID (cid):", cid);
-//   console.log("Assignment ID (assignmentId):", assignmentId);
-  console.log("Filtered Assignments:", assignments);
- 
+
+  const fetchAssignments = async () => {
+    if (cid) {
+      const assignments = await client.findAssignmentsForCourse(cid);
+      setAssignments(assignments);
+    }
+  };
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [cid]);
+
   const handleEdit = (assignment: Assignment) => {
     setEditingId(assignment._id);
     setAssignmentName(assignment.title);
   };
 
-  const handleUpdate = () => {
-    if (editingId) {
-      dispatch(updateAssignment({
-        _id: editingId,
+  const handleUpdate = async () => {
+    if (editingId && cid) {
+      await client.updateAssignment(editingId, {
         title: assignmentName,
         course: cid
-      }));
+      });
       setEditingId(null);
       setAssignmentName('');
+      fetchAssignments();
     }
   };
 
@@ -56,11 +64,12 @@ export default function Assignments() {
     setShowDeleteModal(true);
   };
 
-  const handleConfirmDelete = () => {
+  const handleConfirmDelete = async () => {
     if (assignmentToDelete) {
-      dispatch(deleteAssignment(assignmentToDelete));
+      await client.deleteAssignment(assignmentToDelete);
       setShowDeleteModal(false);
       setAssignmentToDelete(null);
+      fetchAssignments();
     }
   };
 

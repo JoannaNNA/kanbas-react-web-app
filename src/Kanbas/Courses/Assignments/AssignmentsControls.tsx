@@ -4,13 +4,36 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import * as client from "./client";
 
-export default function AssignmentsControls({ assignmentName, setAssignmentName, addAssignment }:
-  { assignmentName: string; setAssignmentName: (title: string) => void; addAssignment: (assignment: any) => void; }) 
-  {
+interface AssignmentsControlsProps {
+  setAssignmentName: (name: string) => void;
+  assignmentName: string;
+  addAssignment: (assignment: any) => void;
+}
+
+const AssignmentsControls: React.FC<AssignmentsControlsProps> = ({ 
+  setAssignmentName, 
+  assignmentName, 
+  addAssignment 
+}) => {
   const { cid } = useParams();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+
+  const handleAddAssignment = async () => {
+    if (cid) {
+      const newAssignment = {
+        title: assignmentName,
+        course: cid,
+        points: 100,
+        description: "",
+      };
+      const created = await client.createAssignment(cid, newAssignment);
+      addAssignment(created);
+      setAssignmentName("");
+    }
+  };
 
   return (
     <div id="wd-assignments-controls" className="container">
@@ -47,4 +70,6 @@ export default function AssignmentsControls({ assignmentName, setAssignmentName,
     </div>
   </div>
   );
-}
+};
+
+export default AssignmentsControls;
