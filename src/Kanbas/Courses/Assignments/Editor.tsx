@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import * as db from "../../Database";
 import { useDispatch, useSelector } from 'react-redux';
 import { addAssignment, updateAssignment } from './reducer';
+import * as client from './client';
 
 
 interface Assignment {
@@ -47,51 +48,50 @@ export default function AssignmentEditor() {
         return `A${(maxId + 1).toString().padStart(3, '0')}`;
     };
 
-    useEffect(() => {
-        if (!isNewAssignment) {
-           
-            const assignment = assignments.find((a: any) => a._id === aid);
-            if (assignment) {
-                setFormData(assignment);
-                setIsEditing(false);
+    const fetchAssignment = async () => {
+        if (!isNewAssignment && aid) {
+            try {
+                const assignments = await client.findAssignmentsForCourse(cid!);
+                const assignment = assignments.find((a: Assignment) => a._id === aid);
+                if (assignment) {
+                    setFormData(assignment);
+                }
+            } catch (error) {
+                console.error("Error fetching assignment:", error);
             }
-        } else {
-            
-            setFormData({
-                _id: '',
-                title: '',
-                description: '',
-                points: 100,
-                start_date: new Date().toISOString().split('T')[0],
-                due_date: new Date().toISOString().split('T')[0],
-                course: cid
-            });
-            setIsEditing(true);
         }
-    }, [aid, isNewAssignment, cid, assignments]); 
-    const handleSaveOrEdit = () => {
+    };
+
+    useEffect(() => {
+        fetchAssignment();
+    }, [aid, cid, isNewAssignment]);
+
+    const handleSaveOrEdit = async () => {
         if (!isNewAssignment && !isEditing) {
             setIsEditing(true);
         } else {
-            if (isNewAssignment) {
-                const newAssignment = {
+            try {
+                const assignmentData = {
                     ...formData,
                     course: cid,
                     title: formData.title || "New Assignment",
                     description: formData.description || "New Description",
-                    points: formData.points || 100,
-                    start_date: formData.start_date || new Date().toISOString().split('T')[0],
-                    due_date: formData.due_date || new Date().toISOString().split('T')[0]
+                    points: Number(formData.points) || 100,
+                    start_date: formData.start_date,
+                    due_date: formData.due_date
                 };
-                dispatch(addAssignment(newAssignment));
-            } else {
-                dispatch(updateAssignment({
-                    ...formData,
-                    course: cid
-                }));
-                setIsEditing(false);
+
+                if (isNewAssignment) {
+                    await client.createAssignment(cid!, assignmentData);
+                } else {
+                    await client.updateAssignment(aid!, assignmentData);
+                    await fetchAssignment();
+                }
+                
+                navigate(`/Kanbas/Courses/${cid}/Assignments`);
+            } catch (error) {
+                console.error("Error saving assignment:", error);
             }
-            navigate(`/Kanbas/Courses/${cid}/Assignments`);
         }
     };
 

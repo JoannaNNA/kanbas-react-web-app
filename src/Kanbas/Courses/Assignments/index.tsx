@@ -16,9 +16,11 @@ import { Modal, Button } from "react-bootstrap";
 interface Assignment {
   _id: string;
   title: string;
+  description?: string;
   start_date?: string;
   due_date?: string;
-  points?: number;
+  end_date?: string;
+  points: number;
   course?: string;
 }
 
@@ -27,20 +29,28 @@ export default function Assignments() {
   const dispatch = useDispatch();
   const [assignmentName, setAssignmentName] = useState('');
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [assignments, setAssignments] = useState([]);
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [assignmentToDelete, setAssignmentToDelete] = useState<string | null>(null);
 
   const fetchAssignments = async () => {
     if (cid) {
-      const assignments = await client.findAssignmentsForCourse(cid);
-      setAssignments(assignments);
+      try {
+        const fetchedAssignments = await client.findAssignmentsForCourse(cid);
+        setAssignments(fetchedAssignments);
+      } catch (error) {
+        console.error("Error fetching assignments:", error);
+      }
     }
   };
 
   useEffect(() => {
     fetchAssignments();
   }, [cid]);
+
+  const refreshAssignments = () => {
+    fetchAssignments();
+  };
 
   const handleEdit = (assignment: Assignment) => {
     setEditingId(assignment._id);
@@ -49,13 +59,27 @@ export default function Assignments() {
 
   const handleUpdate = async () => {
     if (editingId && cid) {
-      await client.updateAssignment(editingId, {
-        title: assignmentName,
-        course: cid
-      });
-      setEditingId(null);
-      setAssignmentName('');
-      fetchAssignments();
+      const currentAssignment = assignments.find(
+        (a: Assignment) => a._id === editingId
+      ) as Assignment | undefined;
+      
+      if (currentAssignment) {
+        const updatedAssignment = await client.updateAssignment(editingId, {
+          _id: currentAssignment._id,
+          title: assignmentName,
+          description: currentAssignment.description || '',
+          points: currentAssignment.points,
+          start_date: currentAssignment.start_date || '',
+          due_date: currentAssignment.due_date || '',
+          end_date: currentAssignment.end_date || '',
+          course: cid
+        });
+        
+        dispatch(updateAssignment(updatedAssignment));
+        setEditingId(null);
+        setAssignmentName('');
+        refreshAssignments();
+      }
     }
   };
 
@@ -69,8 +93,14 @@ export default function Assignments() {
       await client.deleteAssignment(assignmentToDelete);
       setShowDeleteModal(false);
       setAssignmentToDelete(null);
-      fetchAssignments();
+      refreshAssignments();
     }
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + 1);
+    return date.toLocaleDateString();
   };
 
   return (
@@ -140,8 +170,10 @@ export default function Assignments() {
                     </a>
                     <p style={{ color: 'black', fontSize: '0.9em' }}>
                       <span style={{ color: 'red' }}>Multiple Modules</span> | 
-                      {assignment.start_date && <strong> NOT available until {assignment.start_date}</strong>} |
-                      {assignment.due_date && <strong> Due {assignment.due_date}</strong>} | 
+                      {assignment.start_date && 
+                        <span> NOT available until {formatDate(assignment.start_date)}</span>} |
+                      {assignment.due_date && 
+                        <span> Due {formatDate(assignment.due_date)}</span>} | 
                       {assignment.points} Points
                     </p> 
                   </div>

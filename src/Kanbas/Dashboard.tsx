@@ -9,7 +9,7 @@ export default function Dashboard(
     deleteCourse, updateCourse }: {
     courses: any[]; course: any; setCourse: (course: any) => void;
     addNewCourse: () => void; deleteCourse: (course: any) => void;
-    updateCourse: () => void; })
+    updateCourse: (course: any) => void; })
    {
     const [showAllCourses, setShowAllCourses] = useState(false);
     const { currentUser } = useSelector((state: any) => state.accountReducer);

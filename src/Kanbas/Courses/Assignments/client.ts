@@ -22,9 +22,14 @@ export const deleteAssignment = async (assignmentId: string) => {
 };
 
 export const updateAssignment = async (assignmentId: string, assignment: any) => {
-  const response = await axios.put(
-    `${ASSIGNMENTS_API}/${assignmentId}`,
-    assignment
-  );
-  return response.data;
+  try {
+    const response = await axios.put(
+      `${ASSIGNMENTS_API}/${assignmentId}`,
+      assignment
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error updating assignment:", error);
+    throw error;
+  }
 }; 
