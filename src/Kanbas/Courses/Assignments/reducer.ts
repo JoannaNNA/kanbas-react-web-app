@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { assignments } from "../../Database";
 
-// 生成新的作业ID
 const generateNewId = () => {
     const existingIds = assignments
         .map(a => a._id)

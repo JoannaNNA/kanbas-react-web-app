@@ -42,6 +42,7 @@ export default function Dashboard(
           course: courseId,
         },
       });
+      setShowAllCourses(true);
     };
   
   return (
@@ -78,12 +79,12 @@ export default function Dashboard(
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
           {courses
-            // .filter((course) => {
-            //   if (currentUser.role !== 'STUDENT') {
-            //     return isEnrolled(course._id);
-            //   }
-            //   return showAllCourses ? true : isEnrolled(course._id);
-            // })
+            .filter((course) => {
+              if (currentUser.role !== 'STUDENT') {
+                return true;
+              }
+              return showAllCourses ? true : isEnrolled(course._id);
+            })
             .map((course) => (
               <div className="wd-dashboard-course col" style={{ width: "300px" }}>
                 <div className="card rounded-3 overflow-hidden">
@@ -109,6 +110,7 @@ export default function Dashboard(
                             className={`btn ${isEnrolled(course._id) ? 'btn-danger' : 'btn-success'}`}
                             onClick={(e) => {
                               e.preventDefault();
+                              e.stopPropagation();
                               isEnrolled(course._id) 
                                 ? handleUnenroll(course._id)
                                 : handleEnroll(course._id);
