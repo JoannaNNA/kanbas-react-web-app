@@ -44,18 +44,7 @@ export default function PeopleDetails() {
         <FaUserCircle className="text-secondary me-2 fs-1" />
       </div>
       <hr />
-      <button
-        onClick={() => deleteUser(uid)}
-        className="btn btn-danger float-end wd-delete-user"
-      >
-        Delete
-      </button>
-      <button
-        onClick={() => navigate(-1)}
-        className="btn btn-secondary float-end me-2 wd-cancel"
-      >
-        Cancel
-      </button>
+      
       <div className="text-danger fs-4 wd-name">
         {!editing && (
           <FaPencil
@@ -79,13 +68,24 @@ export default function PeopleDetails() {
             className="form-control w-50 wd-edit-name"
           />
         )}
-        {user.firstName} {user.lastName}
       </div>
-      <b>Roles:</b>
-      <b>Login ID:</b>
-      <b>Section:</b>
-      <b>Total Activity:</b>
-      <span className="wd-total-activity">{user.totalActivity}</span>
+      <b>Roles:</b> <span className="wd-roles">{user.role}</span> <br />
+      <b>Login ID:</b> <span className="wd-login-id">{user.loginId}</span> <br />
+      <b>Section:</b> <span className="wd-section">{user.section}</span> <br />
+      <b>Total Activity:</b> <span className="wd-total-activity">{user.totalActivity}</span> <br />
+      <hr />
+      <button
+        onClick={() => deleteUser(uid)}
+        className="btn btn-danger float-end wd-delete-user"
+      >
+        Delete
+      </button>
+      <button
+        onClick={() => navigate(-1)}
+        className="btn btn-secondary float-end me-2 wd-cancel"
+      >
+        Cancel
+      </button>
     </div>
   );
 }
