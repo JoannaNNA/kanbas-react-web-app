@@ -116,12 +116,12 @@ export default function Dashboard({
       <div id="wd-dashboard-courses" className="row">
         <div className="row row-cols-1 row-cols-md-5 g-4">
           {courses
-            // .filter((course) => {
-            //   if (currentUser.role !== 'STUDENT') {
-            //     return true;
-            //   }
-            //   return showAllCourses ? true : isEnrolled(course._id);
-            // })
+            .filter((course) => {
+              if (currentUser.role !== 'STUDENT') {
+                return true;
+              }
+              return !enrolling ? true : isEnrolled(course._id);
+            })
             .map((course) => (
               <div
                 className="wd-dashboard-course col"
@@ -144,7 +144,7 @@ export default function Dashboard({
                     className="wd-dashboard-course-link text-decoration-none text-dark"
                   >
                     <img
-                       src="/images/reactjs.jpg"
+                        src="/images/reactjs.jpg"
                       alt={`Image for ${course.name}`}
                       width="100%"
                       height={160}
