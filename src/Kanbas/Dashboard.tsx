@@ -144,13 +144,10 @@ export default function Dashboard({
                     className="wd-dashboard-course-link text-decoration-none text-dark"
                   >
                     <img
-                      src={course.image || "/images/reactjs.jpg"}
+                      src={course.image}
                       alt={`Image for ${course.name}`}
                       width="100%"
                       height={160}
-                      onError={(e) => {
-                        e.currentTarget.src = "/images/reactjs.jpg";
-                      }}
                     />
                     <div className="card-body">
                       <h5 className="wd-dashboard-course-title card-title">

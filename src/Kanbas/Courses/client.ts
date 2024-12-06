@@ -1,10 +1,20 @@
 import axios from 'axios';
-const axiosWithCredentials = axios.create({ withCredentials: true });
+const axiosWithCredentials = axios.create({ 
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
 const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 export const findAllCourses = async () => {
-  const { data } = await axiosWithCredentials.get(COURSES_API);
-  return data;
+  try {
+    const { data } = await axiosWithCredentials.get(COURSES_API);
+    return data;
+  } catch (error) {
+    console.error("Error fetching courses:", error);
+    throw error;
+  }
 };
 export const deleteCourse = async (id: string) => {
   const { data } = await axiosWithCredentials.delete(`${COURSES_API}/${id}`);
