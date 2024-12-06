@@ -144,7 +144,7 @@ export default function Dashboard({
                     className="wd-dashboard-course-link text-decoration-none text-dark"
                   >
                     <img
-                      src={course.image}
+                       src="/images/reactjs.jpg"
                       alt={`Image for ${course.name}`}
                       width="100%"
                       height={160}
