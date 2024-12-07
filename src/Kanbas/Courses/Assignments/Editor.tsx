@@ -77,20 +77,24 @@ export default function AssignmentEditor() {
                     title: formData.title || "New Assignment",
                     description: formData.description || "New Description",
                     points: Number(formData.points) || 100,
-                    start_date: formData.start_date,
-                    due_date: formData.due_date
+                    start_date: formData.start_date ? new Date(formData.start_date) : null,
+                    due_date: formData.due_date ? new Date(formData.due_date) : null,
+                    end_date: formData.due_date ? new Date(formData.due_date) : null
                 };
 
+                let result;
                 if (isNewAssignment) {
-                    await client.createAssignment(cid!, assignmentData);
+                    result = await client.createAssignment(cid!, assignmentData);
                 } else {
-                    await client.updateAssignment(aid!, assignmentData);
-                    await fetchAssignment();
+                    result = await client.updateAssignment(aid!, assignmentData);
                 }
-                
-                navigate(`/Kanbas/Courses/${cid}/Assignments`);
+
+                if (result) {
+                    navigate(`/Kanbas/Courses/${cid}/Assignments`);
+                }
             } catch (error) {
                 console.error("Error saving assignment:", error);
+                alert("Failed to save assignment. Please try again.");
             }
         }
     };

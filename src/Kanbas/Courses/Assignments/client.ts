@@ -9,11 +9,19 @@ export const findAssignmentsForCourse = async (courseId: string) => {
 };
 
 export const createAssignment = async (courseId: string, assignment: any) => {
-  const response = await axios.post(
-    `${COURSES_API}/${courseId}/assignments`,
-    assignment
-  );
-  return response.data;
+  try {
+    const response = await axios.post(
+      `${COURSES_API}/${courseId}/assignments`,
+      assignment
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating assignment:", error);
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.error || "Failed to create assignment");
+    }
+    throw error;
+  }
 };
 
 export const deleteAssignment = async (assignmentId: string) => {
@@ -30,6 +38,10 @@ export const updateAssignment = async (assignmentId: string, assignment: any) =>
     return response.data;
   } catch (error) {
     console.error("Error updating assignment:", error);
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.error || "Failed to update assignment");
+    }
     throw error;
   }
 }; 
+
