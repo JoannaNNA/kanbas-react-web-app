@@ -1,12 +1,12 @@
+import React from "react";
 import CoursesNavigation from "./Navigation";
-import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
+import { Route, Routes, useParams, useLocation } from "react-router";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
 import Modules from "./Modules";
 import Home from "./Home";
 import PeopleTable from "./People/Table";
 import { FaAlignJustify } from "react-icons/fa6";
-import * as db from "../Database";
 import { TfiDashboard } from "react-icons/tfi";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { FaBook } from "react-icons/fa6";
@@ -22,6 +22,9 @@ import { GiJetpack } from "react-icons/gi";
 import { MdPeopleOutline } from "react-icons/md";
 import { MdMenuBook } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
+import QuizDetail from "./Quizzes/QuizDetail";
+// import QuizEditor from "./Quizzes/QuizEditor";
+
 export default function Courses({ courses }: { courses: any[]; }) {
   const { cid } = useParams();
   const course = courses.find((course:any) => course._id === cid);
@@ -58,7 +61,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
                       <li><a className="dropdown-item text-danger" href="#"><GoPlug />Piazza</a></li>
                       <li><a className="dropdown-item text-danger" href="#"><GoPlug />Zoom Meeting</a></li>
                       <li><a className="dropdown-item text-danger" href="#"><MdOutlineAssignment />Piazza</a></li>
-                      <li><a className="dropdown-item text-danger" href="#"><GiJetpack />Quizzes</a></li>
+                      <li><a className="dropdown-item text-danger" href="/Kanbas/Courses/Quizzes"><GiJetpack />Quizzes</a></li>
                       <li><a className="dropdown-item text-danger" href="#"><MdMenuBook />Grade</a></li>
                       <li><a className="dropdown-item text-danger" href="/Kanbas/Courses/People"><MdPeopleOutline />People</a></li>
                       <li><a className="dropdown-item text-danger" href="#"><CiSettings />Setting</a></li>
@@ -120,6 +123,8 @@ export default function Courses({ courses }: { courses: any[]; }) {
             <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<PeopleTable />} />
+            <Route path="Quizzes" element={<QuizDetail />} />
+            <Route path="Quizzes/:qid" element={<QuizDetail />} />
           </Routes>
         </div>
       </div>
