@@ -13,6 +13,7 @@ interface Assignment {
     points: number;
     start_date: string;
     due_date: string;
+    end_date: string;
     course?: string;
 }
 
@@ -35,6 +36,7 @@ export default function AssignmentEditor() {
         points: 100,
         start_date: '',
         due_date: '',
+        end_date: '',
         course: cid
     });
 
@@ -54,7 +56,13 @@ export default function AssignmentEditor() {
                 const assignments = await client.findAssignmentsForCourse(cid!);
                 const assignment = assignments.find((a: Assignment) => a._id === aid);
                 if (assignment) {
-                    setFormData(assignment);
+                    const formattedAssignment = {
+                        ...assignment,
+                        start_date: assignment.start_date ? new Date(assignment.start_date).toISOString().split('T')[0] : '',
+                        due_date: assignment.due_date ? new Date(assignment.due_date).toISOString().split('T')[0] : '',
+                        end_date: assignment.end_date ? new Date(assignment.end_date).toISOString().split('T')[0] : ''
+                    };
+                    setFormData(formattedAssignment);
                 }
             } catch (error) {
                 console.error("Error fetching assignment:", error);
@@ -203,7 +211,7 @@ export default function AssignmentEditor() {
                                 id="wd-due-date" 
                                 className="form-control" 
                                 style={{ width: '400px' }} 
-                                value={formData.due_date}
+                                value={formData.due_date || ''}
                                 onChange={(e) => setFormData({...formData, due_date: e.target.value})}
                                 disabled={!isEditing && !isNewAssignment}
                             />
@@ -218,7 +226,7 @@ export default function AssignmentEditor() {
                                             type="date" 
                                             id="wd-available-from" 
                                             className="form-control" 
-                                            value={formData.start_date}
+                                            value={formData.start_date || ''}
                                             onChange={(e) => setFormData({...formData, start_date: e.target.value})}
                                             disabled={!isEditing && !isNewAssignment}
                                         />
@@ -229,8 +237,8 @@ export default function AssignmentEditor() {
                                             type="date" 
                                             id="wd-available-until" 
                                             className="form-control" 
-                                            value={formData.due_date}
-                                            onChange={(e) => setFormData({...formData, due_date: e.target.value})}
+                                            value={formData.end_date || formData.due_date || ''}
+                                            onChange={(e) => setFormData({...formData, end_date: e.target.value})}
                                             disabled={!isEditing && !isNewAssignment}
                                         />
                                     </div>
