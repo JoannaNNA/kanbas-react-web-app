@@ -23,6 +23,7 @@ import { MdPeopleOutline } from "react-icons/md";
 import { MdMenuBook } from "react-icons/md";
 import { CiSettings } from "react-icons/ci";
 import QuizDetail from "./Quizzes/QuizDetail";
+import Quiz from "./Quizzes";
 // import QuizEditor from "./Quizzes/QuizEditor";
 
 export default function Courses({ courses }: { courses: any[]; }) {
@@ -123,7 +124,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
             <Route path="Assignments" element={<Assignments/>} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
             <Route path="People" element={<PeopleTable />} />
-            <Route path="Quizzes" element={<QuizDetail />} />
+            <Route path="Quizzes" element={<Quiz />} />
             <Route path="Quizzes/:qid" element={<QuizDetail />} />
           </Routes>
         </div>
